@@ -24,8 +24,8 @@ void print_hex(char *buffer, int len)
 }
 
 // #define HOST_IP_ADDR "10.55.23.25"
-#define HOST_IP_ADDR "192.168.1.102"
-#define PORT 8848
+#define HOST_IP_ADDR "192.168.0.108"
+#define PORT 3334
 
 static const char *TAG = "tcp_client";
 
@@ -41,9 +41,9 @@ void send_data(char *data, uint8_t len)
             ESP_LOGE(TAG, "Error occurred during sending: errno %d ,sock:%d ,send_error:%d", errno, sock,send_error);
             if(errno==12) return; 
             send_error = 1;
-            while (send_error)
+            if (send_error)
             {
-                vTaskDelay(2000 / portTICK_PERIOD_MS);
+                vTaskDelay(1000 / portTICK_PERIOD_MS);
                 ESP_LOGE(TAG, "Delay wait sockt reconnect! sock:%d",sock);
             }
         }

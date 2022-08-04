@@ -1,9 +1,6 @@
 #include "udp_client.h"
 #include "muart.h"
 
-extern int16_t target_spped_left;
-extern int16_t target_spped_right;
-
 
 void print_hex(char *buffer, int len){
 	int i;
@@ -92,11 +89,11 @@ static void udp_client_task(void *pvParameters)
         socklen_t socklen = sizeof(source_addr);
         int len=0 ;
         while (1) {
-            len = recvfrom(sock, rx_buffer, sizeof(rx_buffer) - 1, 0, (struct sockaddr *)&source_addr, &socklen);
-            if (len >= 0) {
+            // len = recvfrom(sock, rx_buffer, sizeof(rx_buffer) - 1, 0, (struct sockaddr *)&source_addr, &socklen);
+            // if (len >= 0) {
                 // rx_buffer[len] = 0; // Null-terminate whatever we received and treat like a string
-                handleData(rx_buffer,len);
-            }
+                // handleData(rx_buffer,len);
+            // }
             if(send_error){
                 shutdown(sock, 0);
                 close(sock);

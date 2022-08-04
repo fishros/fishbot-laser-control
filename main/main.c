@@ -14,15 +14,10 @@
 #include "mwifi.h"
 #include "muart.h"
 
-#define WIFI_NAME "InforeRobot"
-#define WIFI_PASSWORD "12341234ok"
-
 void app_main(void)
 {
     wifi_init();
     wifi_set_as_sta("m","88888888");
-    // wifi_set_as_sta(WIFI_NAME,WIFI_PASSWORD);
-    // my_udp_init();
     my_tcp_init();
     my_uart_init();
 }
