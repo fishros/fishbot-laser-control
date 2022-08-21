@@ -21,3 +21,6 @@ docker run -it --rm --privileged -v=/dev:/dev  -v `pwd`:`pwd` -w `pwd` xingrz/es
 ```
 
 
+设计相关
+
+1. 添加按键控制波特率

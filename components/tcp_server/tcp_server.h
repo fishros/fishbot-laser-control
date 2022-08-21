@@ -19,8 +19,11 @@ extern "C" {
 
 #include <string.h>
 #include <sys/param.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/queue.h"
+
 #include "esp_system.h"
 #include "esp_wifi.h"
 #include "esp_event.h"
@@ -33,9 +36,16 @@ extern "C" {
 #include <lwip/netdb.h>
 
 
-void print_hex(char *buffer, int len);
-void my_tcp_init();
-void send_data(char *data,uint8_t len);
+
+/**
+ * @brief 初始化TCPSERVER
+ * 
+ * @param rx_queue 
+ * @param tx_queue 
+ */
+void tcp_server_init(xQueueHandle *rx_queue, xQueueHandle *tx_queue);
+
+
 
 #ifdef __cplusplus
 }

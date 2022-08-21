@@ -15,6 +15,8 @@
 #include "lwip/err.h"
 #include "lwip/sys.h"
 
+#include "oled.h"
+
 /**
 *   初始化连接到其他
 */

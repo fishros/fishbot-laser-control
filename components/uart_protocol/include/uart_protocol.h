@@ -1,0 +1,51 @@
+/**
+ * @file uart_protocol.h
+ * @author cuizhongren (1326986768@qq.com)
+ * @brief
+ * @version 0.1
+ * @date 2022-07-08
+ *
+ * 版权所有：FishBot Open Source Organization
+ *
+ */
+#ifndef UART_PROTOCOL_H_
+#define UART_PROTOCOL_H_
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "freertos/queue.h"
+#include "esp_system.h"
+#include "esp_log.h"
+#include "driver/uart.h"
+#include "string.h"
+#include "driver/gpio.h"
+
+#include "protocol.h"
+
+/**
+ * @brief 串口协议初始化
+ *
+ * @param data_uart_rx_queue 串口接收队列
+ * @param data_socket_rx_queue 网络数据接收队列
+ * @return true
+ * @return false
+ */
+bool uart_protocol_init(xQueueHandle *data_uart_rx_queue, xQueueHandle *data_socket_rx_queue);
+
+/**
+ * @brief 串口任务初始化
+ *
+ * @return true
+ * @return false
+ */
+bool uart_protocol_task_init(void);
+
+/**
+ * @brief 初始化串口数据接收任务
+ *
+ * @return true
+ * @return false
+ */
+bool uart_protocol_recv_task_init(void);
+
+#endif // UART_PROTOCOL_H_
