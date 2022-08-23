@@ -1,0 +1,1181 @@
+{
+  "schematics": {
+    "3d71ac0a673548d19ba47f2277ebb670": {
+      "name": "Schematic",
+      "sheets": [
+        {
+          "name": "P1",
+          "id": 3
+        }
+      ]
+    }
+  },
+  "pcbs": {
+    "2af6175c333d4ec88934aa1debbe7b5a": "PCB"
+  },
+  "panels": {},
+  "symbols": {
+    "93a9427356ab4e5b87148346938bed19": {
+      "source": "f2baecf085944dad81faf9a0fd6bfcea",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "Sheet-Symbol_A4",
+      "version": "1656921158",
+      "type": 20
+    },
+    "2279bbcfdd164d79945a0b1abd1caf94": {
+      "source": "7a44774edd4e4a2aae656fd6632cec79",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "2.54-1*4P母",
+      "version": "1641821549",
+      "type": 2
+    },
+    "564bdd0363ef4478accf9f0fba7f1df4": {
+      "source": "817a2b12f1f8444aa9dd23951b703391",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "210S-1*2P L=11.6MMGold-plated black",
+      "version": "1644309612",
+      "type": 2
+    },
+    "f53d30927e2742b484677ca12ecbb19b": {
+      "source": "5e9287d951234774ae3ad4b9e400fa8c",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "220S-1*7P H=8.5MM Ytype Gold-plated",
+      "version": "1645666505",
+      "type": 2
+    },
+    "97a35f38f7284678abbf516ed49cb638": {
+      "source": "8a04e22374494d55957a030ec33de1cb",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "5-Voltage",
+      "version": "1656577930",
+      "type": 18
+    },
+    "c88e77b3b55e46ae8fd3f7537c36e6a4": {
+      "source": "314a1ce100094f83a0697ba219726930",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "AMS1117CD-3.3",
+      "version": "1653882604",
+      "type": 2
+    },
+    "e8d1c72915664258a6697c9358c6c037": {
+      "source": "f7609b7188d24e5bbd244ce143829ab9",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "C1206",
+      "version": 1659430495,
+      "type": 2
+    },
+    "c3c047a311c04efeb67efac5d454ba89": {
+      "source": "2113e3c6f65a42489cd7b8c76623e609",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "CH340N_C2977777",
+      "version": "1646444702",
+      "type": 2
+    },
+    "85aadc388c8840f992f2f9b07b1a5d4c": {
+      "source": "cda835af9330471cbf2776cd7a474a09",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "ESP-12F(ESP8266MOD)",
+      "version": "1641818095",
+      "type": 2
+    },
+    "694e6371e56946cfb25bd994d32f8d2d": {
+      "source": "542d01b8b25e4236a453d7437c3944df",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "Ground-GND",
+      "version": "1642995718",
+      "type": 18
+    },
+    "1729360269784d3d8ed90ef9bf08c2f4": {
+      "source": "ba741f81bbdf4d018a76f41efb43934f",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "HDR-M-2.54_2x3",
+      "version": "1656397295",
+      "type": 2
+    },
+    "70e023be5ead466a8bc8e78eb7a91bd9": {
+      "source": "b8dc768e95c648b7820c4c5894134ac8",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "HDR_1x1",
+      "version": "1653980262",
+      "type": 2
+    },
+    "5bfde8098eca4240b2b6069b0e73686b": {
+      "source": "8f0853baf0564a33bcf4c02aff415046",
+      "desc": "2.54mm 1x6",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "Header-Male-2.54_1x6",
+      "version": "1643105106",
+      "type": 2
+    },
+    "889029d60f7d4cf487b79e687653cc86": {
+      "source": "8a5af0ed39d944c9a590f2ecb659d1a7",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "KF128-5.08-2P",
+      "version": "1641819581",
+      "type": 2
+    },
+    "cab7b0a502a1408fb0e3923e3a021d10": {
+      "source": "8f69ea6bc4ec46f6906c1bd050f318de",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "KH-TYPE-C-16P",
+      "version": "1641819311",
+      "type": 2
+    },
+    "b3bc0d81fb23427fb38362a1cf9017b8": {
+      "source": "f2e3f66bd97a4bf48271a86e7b539532",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "LED_G",
+      "version": 1658377592,
+      "type": 2
+    },
+    "1e24b70fe7ce4a9b9d2fef449037f01b": {
+      "source": "c23be017b6634dc197de650ddc68ca1d",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "LED_R",
+      "version": "1652432126",
+      "type": 2
+    },
+    "4cdb6dc60369490eb56869bc50909af0": {
+      "source": "45616a946e2f4edbb009b4ed0efe34ec",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "LED_Y",
+      "version": "1658379617",
+      "type": 2
+    },
+    "000bf9a8183d4eb1b59b424990f2b792": {
+      "source": "093ac24cc5bd4000bde043c04a882eb9",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "MF-MSMF200L-2",
+      "version": "1641818175",
+      "type": 2
+    },
+    "11f03d71cdea426084837e6944f18f50": {
+      "source": "c1b8b751a29345708c24bcef9a67e2b3",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "Power-VCC",
+      "version": "1656577291",
+      "type": 18
+    },
+    "65f8e0bd18c5495d829d68317e560d54": {
+      "source": "5126a5c8cbaa45c4a54e4d9b79621934",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "PZ254V-11-03P_C2937625",
+      "version": "1649045820",
+      "type": 2
+    },
+    "d25f61d74588463ab8331b090cc4dab0": {
+      "source": "6f8cc47a30c240bbb979c211cee8d9f2",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "Sheet-Symbol_A3",
+      "version": "1642995546",
+      "type": 20
+    },
+    "f0a33b5e9c93420f860432aa2963b224": {
+      "source": "040da62c53b14a29a5c91f3463d6eafa",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "TD-1106SN-4.3H-160",
+      "version": "1658370357",
+      "type": 2
+    },
+    "991fd1bfcce74e24a12dcfd598635076": {
+      "source": "e3d6444aad7349e99d0562be62b001a6",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "TPESD05V14T-LC",
+      "version": "1650523504",
+      "type": 2
+    },
+    "22fbfdc232f34ba59a9c5eab762ce2ee": {
+      "source": "337f98afd0264cae93d16cc3bf65754a",
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "title": "电阻",
+      "version": "1653966354",
+      "type": 2
+    }
+  },
+  "footprints": {
+    "572eeb932737477698c1f74a9a470f47": {
+      "title": "C0805",
+      "source": "ccb32feceadc4298b406326a506ce8e7",
+      "version": "1651214382",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "ae555b0483564e249aa79d73e561a2a3": {
+      "title": "C1206",
+      "source": "f9883b5edc654f83a19cf28e812ef37d",
+      "version": "1656396717",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "283cdee4ca2b478c9693aa0e1a15d723": {
+      "title": "CONN-TH_4P-P1.25_A1251WV-4P",
+      "source": "0caa3363dddb418580eda2412b612c9b",
+      "version": "1608530605",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "d0820afb23d94b8cbf08569db023ea27": {
+      "title": "CONN-TH_7P-P1.25_A1251WV-07P",
+      "source": "ac1774f3c17640478cb911c8206e65a4",
+      "version": "1608530167",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "90e4b7ec25f04bc7b3fd687a4f413b2a": {
+      "title": "CONN-TH_P5.08_KF128-5.08-2P",
+      "source": "5ebe50af60434f5892b3101e48003fcc",
+      "version": "1607501037",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "b945e155531b40819aa39d66de71f3fe": {
+      "title": "F1812",
+      "source": "3cd48c3f21284287ae4f26c5e2132672",
+      "version": "1652414979",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "48c2e16efdd94196a0d0823be3a941cb": {
+      "title": "HDR-TH_1P-V-M_XKB_X4611WV-01I-C28D40",
+      "source": "212084a0803f432e9854164e283a07a9",
+      "version": "1637137405",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "50dc9dbc00f64cd2a666854974af417d": {
+      "title": "HDR-TH_2P-P2.54-V-M-1",
+      "source": "f8790065914e4d75b82d300fa5733686",
+      "version": "1651041486",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "7bfc8b272ce341eebd80a6f89ae9f1a7": {
+      "title": "HDR-TH_3P-P2.54-V-M",
+      "source": "c3d82bacc07f4aa18ec3291422b5896d",
+      "version": "1645176652",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "21baad10b45a49d3a0e3aa6a2b27a5d7": {
+      "title": "HDR-TH_6P-P2.54-V-M-1",
+      "source": "4ae36c3264894f4ba8d89c65206a7e09",
+      "version": "1639727098",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "9a3a990fce8a40b08880c602300c8878": {
+      "title": "HDR-TH_6P-P2.54-V-R2-C3-S2.54_A2541WV-2X3P",
+      "source": "7d5ce9f4f4de4e4ca103156b9b901784",
+      "version": 1659428510,
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "dcbd9023809a4bb7849b4ab98595e532": {
+      "title": "LED0805-RD_RED",
+      "source": "02f36eaf55f14a77a6aca359bd3efeab",
+      "version": "1650253292",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "83a5268d628f447e9550aec61aec0bad": {
+      "title": "R0805",
+      "source": "6cfdf2d0c1ca4752bd1a0125f55b71e9",
+      "version": "1651214550",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "a8ddd18c3a134c0da9302506ba0925b6": {
+      "title": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL",
+      "source": "9a7a99f8efd1447bb8a97e5685d724e2",
+      "version": "1652088965",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "dbdede202b9c4d0cae6c287efb77a23c": {
+      "title": "SOT-143-4_L2.9-W1.3-P1.92-LS2.4-BL",
+      "source": "7c7f5e6e87504f7f829fa6ac505f9f16",
+      "version": "1639986760",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "d72efc68403647f2b046d190d0143ead": {
+      "title": "SW-SMD_L6.0-W3.3-LS8.0",
+      "source": "81a5d649403a47909cf193b1c83a7c8a",
+      "version": "1653394686",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "23e79fe92b1c4222bd504bc9ce1adf8b": {
+      "title": "TO-252-2_L6.6-W6.1-P4.57-LS9.9-BR-CW",
+      "source": "b9516104e4ef42ac8ee882dc63cd2a96",
+      "version": "1651213519",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "1862b67a18714a7a9d0dd4a750b9f2d4": {
+      "title": "USB-C-SMD_KH-TYPE-C-16P",
+      "source": "17e17f7fb2f4481a8dfc5627a5acdc6c",
+      "version": "1645145722",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    },
+    "5fc170b1915e4da5943a1dc6ad00bd2c": {
+      "title": "WIFIM-SMD_ESP-12F-ESP8266MOD",
+      "source": "b475577aaa1c4d4895262d44f0a18f31",
+      "version": "1638433994",
+      "type": 4,
+      "desc": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      }
+    }
+  },
+  "devices": {
+    "2997331b33ef49449a5c34e72b56bca0": {
+      "title": "Sheet-Symbol_A4",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Symbol": "93a9427356ab4e5b87148346938bed19"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "4b872d674c0b4b0e8ede0a73cf1a0316",
+      "version": "1611281866"
+    },
+    "9dfeda3678d44c68b98a910f7827bdd9": {
+      "title": "AMS1117CD-3.3",
+      "attributes": {
+        "LCSC Part Name": "Vin=15V Vout=3.3V 1A 72dB@(120Hz)",
+        "Supplier Part": "C841796",
+        "Manufacturer": "美国AMS",
+        "Manufacturer Part": "AMS1117CD-3.3",
+        "Supplier Footprint": "TO-252",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20180727/C6186_7A095716F0823C02F1997A905E26C086.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "c88e77b3b55e46ae8fd3f7537c36e6a4",
+        "Designator": "U?",
+        "Footprint": "23e79fe92b1c4222bd504bc9ce1adf8b",
+        "3D Model": "ce57f84d66384067af8a68020b6de06d",
+        "3D Model Title": "TO-252-2L-3P_L6.6-W6.1-H2.3-LS10.1-P4.6",
+        "3D Model Transform": "259.842,390.52442,0,90,0,0,-39.39,0,0",
+        "Output Type": "固定",
+        "Output Polarity": "正",
+        "Number of Outputs": "1",
+        "Maximum Input Voltage": "15V",
+        "Output Voltage": "3.3V",
+        "Dropout Voltage": "-",
+        "Quiescent Current (Ground Current)": "11mA",
+        "Output Current": "1A",
+        "Power Supply Rejection Ratio (PSRR)": "72dB@(120Hz)",
+        "Noise": "0.003%Vout",
+        "Feature": "-",
+        "Operating Temperature": "-40℃~+125℃@(Tj)",
+        "Description": "输出类型:固定;输出极性:正;输出通道数:1;最大输入电压:15V;输出电压:3.3V;压差:-;静态电流(地电流):11mA;输出电流:1A;电源纹波抑制比(PSRR):72dB@(120Hz);噪声:0.003%Vout;特性:-;工作温度:-40℃~+125℃@(Tj);"
+      },
+      "description": "输出类型:固定;输出极性:正;输出通道数:1;最大输入电压:15V;输出电压:3.3V;压差:-;静态电流(地电流):11mA;输出电流:1A;电源纹波抑制比(PSRR):72dB@(120Hz);噪声:0.003%Vout;特性:-;工作温度:-40℃~+125℃@(Tj);",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "32de446ed52f41db9598f502b3dab87e",
+      "version": "1657658408"
+    },
+    "97e26f0506ac43a38d7a15c3124ca100": {
+      "title": "CAP_0805",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "C?",
+        "Supplier Footprint": "0805",
+        "Symbol": "e8d1c72915664258a6697c9358c6c037",
+        "Footprint": "572eeb932737477698c1f74a9a470f47",
+        "3D Model": "1ba041120af144c991958decab20d241",
+        "3D Model Title": "C0805_L2.0-W1.3-H1.3",
+        "3D Model Transform": "58.8,38.2,38.2,0,0,0,0,0,0",
+        "Value": "100nF",
+        "Description": "容值:100nF;精度:±10%;额定电压:50V;温度系数:X7R;"
+      },
+      "description": "容值:100nF;精度:±10%;额定电压:50V;温度系数:X7R;",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "4e5e3da8856d4725ae885d3846066ee6",
+      "version": "1653034266"
+    },
+    "b1d8dbd190d944c991e8077da5fd032f": {
+      "title": "CAP_1206",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "C?",
+        "Supplier Footprint": "1206",
+        "Description": "容值:100nF;精度:±10%;额定电压:50V;温度系数:X7R;",
+        "Value": "100nF",
+        "Symbol": "e8d1c72915664258a6697c9358c6c037",
+        "Footprint": "ae555b0483564e249aa79d73e561a2a3",
+        "3D Model": "e4be705b945545a48e666415e3682bd8",
+        "3D Model Title": "C1206_L3.2-W1.6-H1.3",
+        "3D Model Transform": "125.98,62.99,51.18,0,0,0,0,0,0"
+      },
+      "description": "容值:100nF;精度:±10%;额定电压:50V;温度系数:X7R;",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [
+        ""
+      ],
+      "source": "b10dad4ba8764023bdbc5be396282bca",
+      "version": 1659430752
+    },
+    "fd390e8d3bdb4d5d9369daecb73462ea": {
+      "title": "CH340N",
+      "attributes": {
+        "LCSC Part Name": "CH340N",
+        "Supplier Part": "C2977777",
+        "Manufacturer": "WCH(南京沁恒)",
+        "Manufacturer Part": "CH340N",
+        "Supplier Footprint": "SOP-8",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20220223/82A45E4FF89B3EDCAD50B354450A7EF4.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "c3c047a311c04efeb67efac5d454ba89",
+        "Designator": "U?",
+        "Footprint": "a8ddd18c3a134c0da9302506ba0925b6",
+        "3D Model": "75c24a7891ee4dd6bdac16a7163ff87e",
+        "3D Model Title": "SOP-8_L4.9-W3.9-P1.27-LS6.0-BL-1",
+        "3D Model Transform": "192.913,236.22,0,0,0,0,0,0,0",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "325695eb60964188af26323ab2a1a9ff",
+      "version": "1654897320"
+    },
+    "400da7534fe24fc9b8d7393c243012c4": {
+      "title": "ESP-12F(ESP8266MOD)",
+      "attributes": {
+        "LCSC Part Name": "ESP-12F(ESP8266MOD)",
+        "Supplier Part": "C82891",
+        "Manufacturer": "Ai-Thinker(安信可)",
+        "Manufacturer Part": "ESP-12F(ESP8266MOD)",
+        "Supplier Footprint": "WIFI Module",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20210219/C82891_ABD84A460F4F056A2757267CCCA4B508.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "85aadc388c8840f992f2f9b07b1a5d4c",
+        "Designator": "U?",
+        "Footprint": "5fc170b1915e4da5943a1dc6ad00bd2c",
+        "3D Model": "c53b8c57aa74447bb5071c1a48f7c219",
+        "3D Model Title": "WIFIM-SMD_WIFI-L24.0-W16.0-H3.1",
+        "3D Model Transform": "630.4,944.9,0,90,0,0,-158.3,0,0",
+        "Description": "屏蔽罩上的丝印是：ESP8266MOD，ESP8266EX串口WIFI"
+      },
+      "description": "屏蔽罩上的丝印是：ESP8266MOD，ESP8266EX串口WIFI",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "7462fa2ce8a743aba4a5be8c58208d4d",
+      "version": "1657657599"
+    },
+    "1b17fde72a4a4934995a4e43d8f54afe": {
+      "title": "Ground-GND",
+      "attributes": {
+        "Symbol": "694e6371e56946cfb25bd994d32f8d2d"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "9a64ac5790a940f7ae40fc736dc6faff",
+      "version": "1635931210"
+    },
+    "a4e0351e2b3d40f3924f4cf900ba0dda": {
+      "title": "HDR-F_2.54_1x4P",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "H？",
+        "Supplier Part": "C2718488",
+        "Supplier Footprint": "插件",
+        "Description": "",
+        "Symbol": "2279bbcfdd164d79945a0b1abd1caf94",
+        "Footprint": "283cdee4ca2b478c9693aa0e1a15d723",
+        "3D Model": "cc31b2279d814fbfa2bb110f1c9b91c5",
+        "3D Model Title": "CONN-TH_4P-P1.25_A1251WV-4P",
+        "3D Model Transform": "265.75,125.98,275.59,0,0,0,0,0,0"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [
+        ""
+      ],
+      "source": "18597ac557f74c9e9a5a41efc24f7b91",
+      "version": 1658825616
+    },
+    "9d1fc89f4b3845d2af9fde26c6e30891": {
+      "title": "HDR-F_2.54_1x7P",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "H?",
+        "Supplier Part": "C124418",
+        "Supplier Footprint": "插件",
+        "Description": "",
+        "Symbol": "f53d30927e2742b484677ca12ecbb19b",
+        "Footprint": "d0820afb23d94b8cbf08569db023ea27",
+        "3D Model": "1f43285fdad64b3883ca380627bfdd93",
+        "3D Model Title": "CONN-TH_7P-P1.25_A1251WV-07P",
+        "3D Model Transform": "413.39,124.02,269.68,0,0,0,0,0,0"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [
+        ""
+      ],
+      "source": "843f0c875bfd438cb2ccb7de605ee7b3",
+      "version": 1658825516
+    },
+    "f04a2d28de544aa4bf0b5f8561a9b5ad": {
+      "title": "HDR-M_2.54_1x1P",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "H?",
+        "Supplier Part": "C81276",
+        "Supplier Footprint": "插件",
+        "Symbol": "70e023be5ead466a8bc8e78eb7a91bd9",
+        "Footprint": "48c2e16efdd94196a0d0823be3a941cb",
+        "JLCPCB Part Class": "Extended Part",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "97bf862a0dce4516a76e61dabd3a1a15",
+      "version": "1654677642"
+    },
+    "39629a9972934597bd0910d258642503": {
+      "title": "HDR-M_2.54_1x2P",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "H?",
+        "Supplier Part": "C124375",
+        "Supplier Footprint": "插件",
+        "Symbol": "564bdd0363ef4478accf9f0fba7f1df4",
+        "Footprint": "50dc9dbc00f64cd2a666854974af417d",
+        "3D Model": "79b2e9f2d70a4d68a1b7098f27c6d4c5",
+        "3D Model Title": "HDR-M-2.54_1x2_1",
+        "3D Model Transform": "183.2,91.6,414.72,0,0,0,0,0,-107",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "eab4a8150b6d4918927e38d645cd50f2",
+      "version": "1653290858"
+    },
+    "1ba08c9081d440609672b503eba54bb7": {
+      "title": "HDR-M_2.54_1x3P",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "H?",
+        "Supplier Part": "C2937625",
+        "Supplier Footprint": "插件",
+        "Symbol": "65f8e0bd18c5495d829d68317e560d54",
+        "Footprint": "7bfc8b272ce341eebd80a6f89ae9f1a7",
+        "3D Model": "bb473b6d38ff42a99216a4fcdbdcc4cb",
+        "3D Model Title": "HDR-TH_3P-P2.54-M-LI-1X3P",
+        "3D Model Transform": "299.97,99.99,454.29,0,0,0,0,0,-115",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "acd188b15a9c406bb9cb83c474d5327e",
+      "version": "1654677568"
+    },
+    "5a2e3566475e4884b68323554e6a40ff": {
+      "title": "HDR-M_2.54_1x6P",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "H?",
+        "Supplier Part": "C37208",
+        "Supplier Footprint": "插件",
+        "Symbol": "5bfde8098eca4240b2b6069b0e73686b",
+        "Footprint": "21baad10b45a49d3a0e3aa6a2b27a5d7",
+        "3D Model": "60739dffc9b04830a286435b0fefbd4a",
+        "3D Model Title": "HDR2.54-M-LI-1X6P",
+        "3D Model Transform": "600,100,452.76,0,0,0,0,0,-120",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "8713123b624d4455bcbe38688209bdf0",
+      "version": "1653291042"
+    },
+    "3c94f75eba6c46bd992b64501615efd0": {
+      "title": "hdr-m_2.54_2x3",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "U?",
+        "Supplier Part": "C402781",
+        "Supplier Footprint": "插件,P=2.54mm",
+        "Symbol": "1729360269784d3d8ed90ef9bf08c2f4",
+        "Footprint": "9a3a990fce8a40b08880c602300c8878",
+        "3D Model": "fd1b55b786fb415ca65c4187088147b7",
+        "3D Model Title": "HDR2.54-M-LI-2x3P",
+        "3D Model Transform": "300,200,452.76,0,0,0,0,0,-125",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "8aa16cccc27d4966b313274d43cad122",
+      "version": "1657093765"
+    },
+    "ca2ca968fbe5484fbb0edf685f0d3ebc": {
+      "title": "KF128-5.08-2P-AA",
+      "attributes": {
+        "LCSC Part Name": "5.08mm 排数:1 每排P数:2 直针 可拼接 铜 环保",
+        "Supplier Part": "C474952",
+        "Manufacturer": "KEFA(科发)",
+        "Manufacturer Part": "KF128-5.08-2P-AA",
+        "Supplier Footprint": "P=5.08mm",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20200115/C474952_247EA363B54E48056C0EEFAE693CC626.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "889029d60f7d4cf487b79e687653cc86",
+        "Designator": "U?",
+        "Footprint": "90e4b7ec25f04bc7b3fd687a4f413b2a",
+        "3D Model": "c20b944b8b504b8cbc9f254946cd866f",
+        "3D Model Title": "CONN-TH_P5.08_KF128-5.08-2P",
+        "3D Model Transform": "411.8,417.3,0,0,0,0,-5.9,0,-169.3",
+        "Pitch": "5.08mm",
+        "Number of Rows": "1",
+        "Number of PINs Per Row": "2",
+        "Mounting Style": "直针",
+        "Current Rating (Max)": "24A",
+        "Voltage Rating (Max)": "250V",
+        "Wire Gauge - AWG": "12~22",
+        "Wire Gauge - mm?": "2.5",
+        "Operating Temperature Range": "-40℃~+105℃",
+        "Color": "绿色",
+        "Description": "间距:5.08mm;排数:1;每排PIN数:2;安装方式:直针;额定电流:24A;额定电压:250V;线规 - AWG:12~22;线规 - mm?:2.5;工作温度范围:-40℃~+105℃;颜色:绿色;"
+      },
+      "description": "间距:5.08mm;排数:1;每排PIN数:2;安装方式:直针;额定电流:24A;额定电压:250V;线规 - AWG:12~22;线规 - mm?:2.5;工作温度范围:-40℃~+105℃;颜色:绿色;",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "ca256d03145c4204b450b3bc9f34e2f3",
+      "version": "1657051507"
+    },
+    "f0aa120968a7414eb1284f09efe2a39a": {
+      "title": "LED_0805-G",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "LED?",
+        "Symbol": "b3bc0d81fb23427fb38362a1cf9017b8",
+        "Footprint": "dcbd9023809a4bb7849b4ab98595e532",
+        "3D Model": "381ae4d721d6485eaad9d0ca067812b5",
+        "3D Model Title": "LED-0805_G",
+        "3D Model Transform": "63.9,39.8,31.9,0,0,0,0,0,0",
+        "Supplier Footprint": "0805",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "9a2c81c7c711447282ed038dcac46c66",
+      "version": "1653040645"
+    },
+    "dcb77a1f64124c63a3d63552e230b9f0": {
+      "title": "LED_0805-R",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "LED?",
+        "Symbol": "1e24b70fe7ce4a9b9d2fef449037f01b",
+        "Footprint": "dcbd9023809a4bb7849b4ab98595e532",
+        "3D Model": "33fb9fca58e84f37a403ebeef4c28b77",
+        "3D Model Title": "LED-0805_R",
+        "3D Model Transform": "78.7,49.1,39.3,0,0,0,0,0,0",
+        "Supplier Footprint": "0805",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "557cb66e2eaa44c5b9d053839aab5d83",
+      "version": "1653040477"
+    },
+    "1cb9c315af104a44821d942aad2b3668": {
+      "title": "LED_0805_Y",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "U?",
+        "Description": "",
+        "Symbol": "4cdb6dc60369490eb56869bc50909af0",
+        "Footprint": "dcbd9023809a4bb7849b4ab98595e532",
+        "3D Model": "ad9e52687c9f4267bcf4aaf65e902c71",
+        "3D Model Title": "LED-0805_G",
+        "3D Model Transform": "78.97,49.21,39.41,0,0,0,0,0,0"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [
+        ""
+      ],
+      "source": "54fedb6dfc874e3292a46f192955bcfb",
+      "version": 1659493716
+    },
+    "3d40249aecd54d909cad8458c9de739f": {
+      "title": "MF-MSMF200L-2",
+      "attributes": {
+        "LCSC Part Name": "2.0A 8V 自恢复保险丝",
+        "Supplier Part": "C89650",
+        "Manufacturer": "BOURNS",
+        "Manufacturer Part": "MF-MSMF200L-2",
+        "Supplier Footprint": "1812",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20190729/C89650_71DC0E33663A848EF15DBDECA2BE46F8.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "000bf9a8183d4eb1b59b424990f2b792",
+        "Designator": "U?",
+        "Footprint": "b945e155531b40819aa39d66de71f3fe",
+        "3D Model": "bca21e458c564d38b781621ca22e660b",
+        "3D Model Title": "F1812_L4.5-W3.2-H1.0",
+        "3D Model Transform": "177.165,125.984,0,0,0,0,0.0005,0,0",
+        "Operating Voltage (Max)": "8V",
+        "Current Rating (Max)": "40A",
+        "Hold Current": "2A",
+        "Trip Current": "4A",
+        "Description": "最大电压:8V;最大电流:40A;保持电流:2A;跳闸电流:4A;"
+      },
+      "description": "最大电压:8V;最大电流:40A;保持电流:2A;跳闸电流:4A;",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "ffdfc1eb2e9a4ac1a8406be8f8807a31",
+      "version": "1655151658"
+    },
+    "ce502e706c8049a99772d43e6efc7ef7": {
+      "title": "Power-5V",
+      "attributes": {
+        "Symbol": "97a35f38f7284678abbf516ed49cb638",
+        "Global Net Name": "+5V",
+        "Footprint": ""
+      },
+      "description": "Power-5V",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "c19033e4f560428090e4fc097513e5e3",
+      "version": "1656577930"
+    },
+    "86f43ebcf9a94692b57ff57923deba23": {
+      "title": "Power-VCC",
+      "attributes": {
+        "Symbol": "11f03d71cdea426084837e6944f18f50"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "b381658129d94456b54f23250ef5a375",
+      "version": "1635930980"
+    },
+    "f6b49518e181442da5dd0baadad3f8bb": {
+      "title": "Res_0805",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Designator": "R?",
+        "Supplier Part": "C319941",
+        "Supplier Footprint": "0805",
+        "Value": "10K",
+        "Symbol": "22fbfdc232f34ba59a9c5eab762ce2ee",
+        "Footprint": "83a5268d628f447e9550aec61aec0bad",
+        "3D Model": "1f8f9bfd8e2b427398b06535d781678a",
+        "3D Model Title": "R0805",
+        "3D Model Transform": "78.74,51.18,24.02,0,0,0,0,0,0",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "b369dfa5dc6b4e19b2b71ef8a6565926",
+      "version": "1655971888"
+    },
+    "9b479342bc5b465faa4f81bf4648aaca": {
+      "title": "Sheet-Symbol_A3",
+      "attributes": {
+        "Convert to PCB": "yes",
+        "Add into BOM": "yes",
+        "Symbol": "d25f61d74588463ab8331b090cc4dab0"
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "25d1e29c59cf4041907f5908f56317a1",
+      "version": "1609331926"
+    },
+    "e84276e7b0e146c6b2c8d8088b4dd573": {
+      "title": "TD-1106SN-4.3H-160",
+      "attributes": {
+        "LCSC Part Name": "立式贴片两脚轻触开关H4.3 160gf",
+        "Supplier Part": "C2905167",
+        "Manufacturer": "DEALON(德艺隆)",
+        "Manufacturer Part": "TD-1106SN-4.3H-160",
+        "Supplier Footprint": "SMD",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20211025/B80E60F312E16FCA397910204771D90C.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "f0a33b5e9c93420f860432aa2963b224",
+        "Designator": "SW?",
+        "Footprint": "d72efc68403647f2b046d190d0143ead",
+        "3D Model": "b2f4ea9f0afc4b0786d53dba66ceb9e4",
+        "3D Model Title": "SW-SMD_L6.0-W3.3-H5-LS8.0",
+        "3D Model Transform": "314.96,129.921,0,0,0,0,0,0,0",
+        "Contact Current": "-",
+        "Voltage Rating (DC)": "-",
+        "Circuit": "单刀单掷",
+        "Mounting Style": "立贴",
+        "Actuator Style": "矩形按钮",
+        "Actuator/Cap Color": "白色",
+        "Operating Force": "160gf@±50gf",
+        "Pin Style": "鸥翼型",
+        "Switch Length": "6mm",
+        "Switch Width": "3.3mm",
+        "Switch Height": "4.3mm",
+        "Strike Gundam": "否",
+        "Description": "触点电流:-;额定电压(DC):-;电路结构:单刀单掷;安装方式:立贴;按钮形状:矩形按钮;按钮/盖帽颜色:白色;作用力:160gf@±50gf;引脚样式:鸥翼型;开关长度:6mm;开关宽度:3.3mm;开关高度:4.3mm;带支架:否;"
+      },
+      "description": "触点电流:-;额定电压(DC):-;电路结构:单刀单掷;安装方式:立贴;按钮形状:矩形按钮;按钮/盖帽颜色:白色;作用力:160gf@±50gf;引脚样式:鸥翼型;开关长度:6mm;开关宽度:3.3mm;开关高度:4.3mm;带支架:否;",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "93db53aa2b4a4a818d70754bc8b12f09",
+      "version": "1658435097"
+    },
+    "23f3afb8253648739fe79ba780f6d687": {
+      "title": "TPESD05V14T-LC",
+      "attributes": {
+        "LCSC Part Name": "TPESD05V14T-LC",
+        "Supplier Part": "C2875165",
+        "Manufacturer": "TECH PUBLIC(台舟)",
+        "Manufacturer Part": "TPESD05V14T-LC",
+        "Supplier Footprint": "SOT-143",
+        "JLCPCB Part Class": "Extended Part",
+        "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20210810/01641948E593C845F2888398ED922DCD.pdf",
+        "Supplier": "LCSC",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "991fd1bfcce74e24a12dcfd598635076",
+        "Designator": "D?",
+        "Footprint": "dbdede202b9c4d0cae6c287efb77a23c",
+        "3D Model": "2837e3608ba24a5fbaabe401bacde791",
+        "3D Model Title": "SOT-143-4_L2.9-W1.3-P1.92-LS2.4-BL",
+        "3D Model Transform": "114.2,93.3,0,0,0,0,0,0,0",
+        "Description": ""
+      },
+      "description": "",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "f56034a1538048358683b051962a02e7",
+      "version": "1657743678"
+    },
+    "34fb859379784eb19a38e95d82b5286c": {
+      "title": "USB_TYPE-C-16P",
+      "attributes": {
+        "Supplier Part": "C709357",
+        "Supplier Footprint": "插件",
+        "Add into BOM": "yes",
+        "Convert to PCB": "yes",
+        "Symbol": "cab7b0a502a1408fb0e3923e3a021d10",
+        "Designator": "USB?",
+        "Footprint": "1862b67a18714a7a9d0dd4a750b9f2d4",
+        "3D Model": "35058e297fd54ee2afd2de30c3ce7155",
+        "3D Model Title": "USB-C_SMD-TYPE-C-31-M-12",
+        "3D Model Transform": "351.93,310.99,161.4,180,0,0,0,-45,-35",
+        "Description": "连接器类型:Type-C;标准:-;公母:母座;触点数量:16;端口数量:1;安装方式:卧贴;额定电流 - 电源:3A;工作温度范围:-40℃~+85℃;"
+      },
+      "description": "连接器类型:Type-C;标准:-;公母:母座;触点数量:16;端口数量:1;安装方式:卧贴;额定电流 - 电源:3A;工作温度范围:-40℃~+85℃;",
+      "tags": {
+        "parent_tag": [],
+        "child_tag": []
+      },
+      "images": [],
+      "source": "839150f059fc4fb59531e3eb222fe13d",
+      "version": "1653964475"
+    }
+  },
+  "boards": {
+    "V1.0_20220803_alpha": {
+      "schematic": "3d71ac0a673548d19ba47f2277ebb670",
+      "pcb": "2af6175c333d4ec88934aa1debbe7b5a"
+    }
+  },
+  "config": {
+    "title": "fishbot-laser-control",
+    "cbbProject": false,
+    "defaultSheet": "2997331b33ef49449a5c34e72b56bca0"
+  }
+}
