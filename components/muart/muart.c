@@ -49,7 +49,8 @@ static void uart_task(void *arg)
         read_len = uart_read_bytes(ECHO_UART_PORT_NUM, data, BUF_SIZE, 8 / portTICK_RATE_MS);
         // if (read_len<22) continue;
         send_data((char*)data,read_len);
-        vTaskDelay(16 / portTICK_PERIOD_MS);
+        vTaskDelay(2 / portTICK_PERIOD_MS);
+        esp_task_wdt_reset();
     }
     // uart_write_bytes(ECHO_UART_PORT_NUM,"stoplds$", 8);
 }

@@ -14,6 +14,7 @@ extern "C" {
 #include "driver/uart.h"
 #include "driver/gpio.h"
 #include "tcp_client.h"
+#include "esp_task_wdt.h"
 
 
 typedef struct 
