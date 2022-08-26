@@ -13,9 +13,30 @@
 #include "tcpip_adapter.h"
 #include "esp_smartconfig.h"
 #include "smartconfig_ack.h"
+#include <stdio.h>
+#include <string.h>
 #include "oled.h"
 #include "nvs.h"
 
+#define SSID_LEN 33
+#define PASSWORD_LEN 65
+#define BUFF_SIZE 512
+#define UDP_IP_LEN 20
+#define UDP_PORT_LEN 8
+
+/**
+ * @brief SmartConfig
+ * 
+ */
 void wificonfig_start(void);
+
+/**
+ * config,wifi,m,88888888
+ * config,proto,udp_client,192.168.1.1,3347
+ * config,proto,udp_server,0.0.0.0,3347
+ * restart
+ * 
+ */
+void wificonfig_byuart(void);
 
 #endif // WIFICONFIG_H_

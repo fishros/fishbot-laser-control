@@ -49,9 +49,11 @@ static void gpio_task_example(void *arg)
                 count = 0;
             }
 
-            if (count > 2)
+            if (count > 1)
             {
                 nvs_write_uint8("is_smart", 0);
+                // restart
+                vTaskDelay(20);
                 esp_restart();
             }
         }
