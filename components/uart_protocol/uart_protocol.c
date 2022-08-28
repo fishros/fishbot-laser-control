@@ -29,7 +29,7 @@ static protocol_package_t frame_pack_rx_;
 void uart_init(void)
 {
     const uart_config_t uart_config = {
-        .baud_rate = 76800,
+        .baud_rate = 115200,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
@@ -68,9 +68,6 @@ static void uart_tx_task(void *pvParameters)
             {
                 // TODO() Add Error LOG!
             }
-#ifdef DEBUG_UART
-            print_hex();
-#endif
         }
     }
 }
@@ -95,13 +92,14 @@ static void uart_rx_task(void *pvParameters)
         {
             continue;
         }
-#ifdef DEBUG_FISHBOT
-        print_frame_to_hex((uint8_t *)"rxraw",
-                           (uint8_t *)frame_buffer_rx_ + rx_index, rx_bytes_len);
-        printf("rx_index=%d,rx_bytes_len=%d\n", rx_index, rx_bytes_len);
-#endif
         frame_pack_rx_.size = rx_bytes_len;
         xQueueSend(*data_uart_rx_queue_, &frame_pack_rx_, 2 / portTICK_RATE_MS);
+#define DEBUG_FISHBOT
+#ifdef DEBUG_FISHBOT
+        print_frame_to_hex((uint8_t *)"rxraw",
+                           (uint8_t *)frame_pack_rx_.data, rx_bytes_len);
+        printf("rx_index=%d,rx_bytes_len=%d\n", rx_index, rx_bytes_len);
+#endif
     }
 }
 

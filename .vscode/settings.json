@@ -30,6 +30,7 @@
         "utility": "c",
         "protocol.h": "c",
         "tcp_client_protocol.h": "c",
-        "string": "c"
+        "string": "c",
+        "*.inc": "c"
     }
 }

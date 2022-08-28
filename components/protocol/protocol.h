@@ -12,4 +12,6 @@ typedef struct
     uint8_t data[RX_TX_PACKET_SIZE];
 }  __attribute__((packed)) protocol_package_t;
 
+void print_frame_to_hex(uint8_t *title, uint8_t *buffer, uint16_t size);
+
 #endif
