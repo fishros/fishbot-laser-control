@@ -23,6 +23,7 @@ static char ip_[16] = {"192.168.0.108"};
 static uint32_t port_ = 3334;
 
 static const char *TAG = "tcp_client";
+
 int sock = -1;
 char addr_str[128];
 int addr_family = 0;
@@ -44,7 +45,8 @@ bool tcp_client_config_init(char ip[16], uint32_t port)
  * @return true
  * @return false
  */
-bool tcp_client_protocol_init(xQueueHandle *data_uart_rx_queue, xQueueHandle *data_socket_rx_queue)
+bool tcp_client_protocol_init(xQueueHandle *data_uart_rx_queue,
+                              xQueueHandle *data_socket_rx_queue)
 {
     data_uart_rx_queue_ = data_uart_rx_queue;
     data_socket_rx_queue_ = data_socket_rx_queue;
@@ -80,11 +82,10 @@ static void connect_to_tcp_server()
     if (err != 0)
     {
         ESP_LOGE(TAG, "Socket unable to connect: errno %d", errno);
-        sock = -1;
+        close(sock);
         return;
     }
     ESP_LOGE(TAG, "3");
-    // send(sock, "Successfully connected", 22, 0);
     is_tcp_client_init_ = true;
 }
 
@@ -105,7 +106,8 @@ static void tcp_client_tx_task(void *parameters)
         ESP_LOGE(TAG, "6");
         if (xQueueReceive(*data_uart_rx_queue_, &frame_pack_tx_, 5) == pdTRUE)
         {
-            printf("send %s to server.. %d \n", frame_pack_tx_.data, frame_pack_tx_.size);
+            printf("send %s to server.. %d \n", frame_pack_tx_.data,
+                   frame_pack_tx_.size);
             len = send(sock, (char *)frame_pack_tx_.data, frame_pack_tx_.size, 0);
             printf("send len=%d \n", len);
             if (len < 0)
@@ -128,7 +130,8 @@ static void tcp_client_rx_task(void *parameters)
             vTaskDelay(500 / portTICK_PERIOD_MS);
             continue;
         }
-        rx_bytes_len = recv(sock, frame_pack_rx_.data, RX_BUF_SIZE - 1, 10 / portTICK_RATE_MS);
+        rx_bytes_len =
+            recv(sock, frame_pack_rx_.data, RX_BUF_SIZE - 1, 10 / portTICK_RATE_MS);
         if (rx_bytes_len > 0)
         {
             frame_pack_rx_.size = rx_bytes_len;
@@ -146,9 +149,9 @@ static void tcp_client_rx_task(void *parameters)
  */
 bool tcp_client_protocol_task_init(void)
 {
-    xTaskCreate(tcp_client_tx_task, "tcp_client_tx_task", 1024 * 2, NULL, 7,
+    xTaskCreate(tcp_client_tx_task, "tcp_client_tx_task", 1024 * 2, NULL, 5,
                 NULL);
-    xTaskCreate(tcp_client_rx_task, "tcp_client_rx_task", 1024 * 2, NULL, 7,
+    xTaskCreate(tcp_client_rx_task, "tcp_client_rx_task", 1024 * 2, NULL, 5,
                 NULL);
     return true;
 }

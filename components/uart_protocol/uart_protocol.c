@@ -57,10 +57,10 @@ static void uart_tx_task(void *pvParameters)
     {
         if (is_uart_init_ == false)
         {
-            vTaskDelay(20);
+            vTaskDelay(20 / portTICK_RATE_MS);
             continue;
         }
-        if (xQueueReceive(*data_socket_rx_queue_, &frame_pack_tx_, 5) == pdTRUE)
+        if (xQueueReceive(*data_socket_rx_queue_, &frame_pack_tx_, 10 / portTICK_RATE_MS) == pdTRUE)
         {
             tx_bytes_len = uart_write_bytes(UART_PROTOC_NUM, (char *)frame_pack_tx_.data,
                                             frame_pack_tx_.size);
@@ -83,7 +83,7 @@ static void uart_rx_task(void *pvParameters)
     {
         if (is_uart_init_ == false)
         {
-            vTaskDelay(20);
+            vTaskDelay(20 / portTICK_RATE_MS);
             continue;
         }
         rx_bytes_len = uart_read_bytes(UART_PROTOC_NUM, frame_pack_rx_.data,
@@ -94,7 +94,6 @@ static void uart_rx_task(void *pvParameters)
         }
         frame_pack_rx_.size = rx_bytes_len;
         xQueueSend(*data_uart_rx_queue_, &frame_pack_rx_, 2 / portTICK_RATE_MS);
-#define DEBUG_FISHBOT
 #ifdef DEBUG_FISHBOT
         print_frame_to_hex((uint8_t *)"rxraw",
                            (uint8_t *)frame_pack_rx_.data, rx_bytes_len);
@@ -107,7 +106,7 @@ bool uart_protocol_task_init(void)
 {
     xTaskCreate(uart_rx_task, "uart_rx_task", 1024 * 2, NULL, 5,
                 NULL); //接收任务
-    xTaskCreate(uart_tx_task, "uart_tx_task", 1024 * 2, NULL, 4,
+    xTaskCreate(uart_tx_task, "uart_tx_task", 1024 * 2, NULL, 5,
                 NULL); //发送任务
     return true;
 }
