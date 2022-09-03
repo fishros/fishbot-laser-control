@@ -23,6 +23,12 @@
 #include "protocol.h"
 
 /**
+ * @brief 串口初始化
+ * 
+ */
+void uart_init(void);
+
+/**
  * @brief 串口协议初始化
  *
  * @param data_uart_rx_queue 串口接收队列

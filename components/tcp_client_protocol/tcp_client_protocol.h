@@ -35,16 +35,6 @@ extern "C" {
 
 
 /**
- * @brief 协议初始化
- *
- * @param data_uart_rx_queue 串口接收队列
- * @param data_socket_rx_queue 网络数据接收队列
- * @return true
- * @return false
- */
-bool tcp_client_protocol_init(xQueueHandle *data_uart_rx_queue, xQueueHandle *data_socket_rx_queue);
-
-/**
  * @brief 配置TCP客户端
  * 
  * @param ip 
@@ -54,6 +44,7 @@ bool tcp_client_protocol_init(xQueueHandle *data_uart_rx_queue, xQueueHandle *da
  */
 bool tcp_client_config_init(char ip[16],uint32_t port);
 
+
 /**
  * @brief 任务初始化
  *
@@ -62,13 +53,6 @@ bool tcp_client_config_init(char ip[16],uint32_t port);
  */
 bool tcp_client_protocol_task_init(void);
 
-/**
- * @brief 初始化串口数据接收任务
- *
- * @return true
- * @return false
- */
-bool tcp_client_protocol_recv_task_init(void);
 
 
 

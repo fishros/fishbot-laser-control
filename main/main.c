@@ -20,14 +20,16 @@
 #include "tcp_server.h"
 #include "uart_protocol.h"
 #include "wificonfig.h"
+#include "esp_task_wdt.h"
 
-static xQueueHandle data_uart_rx_queue_;
-static xQueueHandle data_socket_rx_queue_;
 static char ssid[SSID_LEN];
 static char password[PASSWORD_LEN];
 static char udp_ip[UDP_IP_LEN] = {"192.168.0.108"};
 static char udp_port_str[UDP_PORT_LEN] = {"3347"};
 static uint32_t udp_port = 3347;
+
+static protocol_package_t uart_rx_package_;
+static protocol_package_t tcp_client_rx_package_;
 
 void app_main(void)
 {
@@ -52,16 +54,29 @@ void app_main(void)
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
            password, udp_ip, udp_port_str, udp_port);
 
-    data_uart_rx_queue_ = xQueueCreate(5, sizeof(protocol_package_t));
-    data_socket_rx_queue_ = xQueueCreate(5, sizeof(protocol_package_t));
-
+    /*wifi config*/
     wifi_init();
     wifi_set_as_sta(ssid, password);
-
-    uart_protocol_init(&data_uart_rx_queue_, &data_socket_rx_queue_);
+    /*uart init*/
     uart_protocol_task_init();
-
+    /*tcp_client config*/
     tcp_client_config_init(udp_ip, udp_port);
-    tcp_client_protocol_init(&data_uart_rx_queue_, &data_socket_rx_queue_);
     tcp_client_protocol_task_init();
+
+    static int16_t uart_rx_len;
+    static int16_t tcp_client_rx_len;
+    while (true)
+    {
+        uart_rx_len = uart_rx_data(&uart_rx_package_);
+        if (uart_rx_len > 0)
+        {
+            tcp_client_tx_data(&uart_rx_package_);
+        }
+        tcp_client_rx_len = tcp_client_rx_data(&tcp_client_rx_package_);
+        if (tcp_client_rx_len > 0)
+        {
+            uart_tx_data(&tcp_client_rx_package_);
+        }
+        esp_task_wdt_reset();
+    }
 }

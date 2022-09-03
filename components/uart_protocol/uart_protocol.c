@@ -15,20 +15,14 @@
 
 #define UART_PROTOC_NUM UART_NUM_0
 
-#define TX_BUF_SIZE 512 // 串口缓存帧的大小
-#define RX_BUF_SIZE 512 // 串口缓存帧的大小
+#define TX_BUF_SIZE 1024 // 串口缓存帧的大小
+#define RX_BUF_SIZE 1024 // 串口缓存帧的大小
 
-static xQueueHandle *data_uart_rx_queue_;
-static xQueueHandle *data_socket_rx_queue_;
 static bool is_uart_init_ = false;
-static char frame_buffer_tx_[TX_BUF_SIZE];
-static char frame_buffer_rx_[RX_BUF_SIZE];
-static protocol_package_t frame_pack_tx_;
-static protocol_package_t frame_pack_rx_;
 
 void uart_init(void)
 {
-    const uart_config_t uart_config = {
+    uart_config_t uart_config = {
         .baud_rate = 115200,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
@@ -40,80 +34,56 @@ void uart_init(void)
     ESP_ERROR_CHECK(uart_param_config(UART_PROTOC_NUM, &uart_config));
 }
 
-bool uart_protocol_init(xQueueHandle *data_uart_rx_queue, xQueueHandle *data_socket_rx_queue)
+/**
+ * @brief 串口接收数据
+ *
+ * @param protocol_package_
+ * @return int16_t
+ */
+int16_t uart_rx_data(protocol_package_t *protocol_package_)
 {
-    data_uart_rx_queue_ = data_uart_rx_queue;
-    data_socket_rx_queue_ = data_socket_rx_queue;
-    // uart hardware init
-    uart_init();
-    is_uart_init_ = true;
-    return is_uart_init_;
+    // static int length = 0;
+    static int rx_bytes_len;
+    static size_t length;
+    // ESP_LOGI("UART", "47");
+    uart_get_buffered_data_len(UART_PROTOC_NUM, &length);
+    // ESP_LOGI("UART", "49,%d", length);
+    if (length <= 0)
+    {
+        return -1;
+    }
+    rx_bytes_len = uart_read_bytes(UART_PROTOC_NUM, protocol_package_->data,
+                                   length, 0);
+    if(rx_bytes_len<=0)
+    {
+        return -1;
+    }
+    protocol_package_->size = rx_bytes_len;
+#ifdef DEBUG_FISHBOT
+    print_frame_to_hex((uint8_t *)"rxraw",
+                       (uint8_t *)protocol_package_->data, rx_bytes_len);
+    printf("rx_bytes_len=%d\n", rx_bytes_len);
+#endif
+    return rx_bytes_len;
 }
 
-static void uart_tx_task(void *pvParameters)
+/**
+ * @brief 串口发送数据
+ *
+ * @param protocol_package_
+ * @return int16_t
+ */
+int16_t uart_tx_data(protocol_package_t *protocol_package_)
 {
     static int16_t tx_bytes_len = 0;
-    while (true)
-    {
-        if (is_uart_init_ == false)
-        {
-            vTaskDelay(20 / portTICK_RATE_MS);
-            continue;
-        }
-        if (xQueueReceive(*data_socket_rx_queue_, &frame_pack_tx_, 10 / portTICK_RATE_MS) == pdTRUE)
-        {
-            tx_bytes_len = uart_write_bytes(UART_PROTOC_NUM, (char *)frame_pack_tx_.data,
-                                            frame_pack_tx_.size);
-            if (tx_bytes_len <= 0)
-            {
-                // TODO() Add Error LOG!
-            }
-        }
-    }
-}
-
-static void uart_rx_task(void *pvParameters)
-{
-    static uint16_t i = 0;
-    static uint16_t rx_index = 0;
-    static int16_t frame_start_index = -1;
-    static int16_t frame_end_index = -1;
-    uint16_t rx_bytes_len;
-    while (true)
-    {
-        if (is_uart_init_ == false)
-        {
-            vTaskDelay(20 / portTICK_RATE_MS);
-            continue;
-        }
-        rx_bytes_len = uart_read_bytes(UART_PROTOC_NUM, frame_pack_rx_.data,
-                                       RX_BUF_SIZE, 10 / portTICK_RATE_MS);
-        if (rx_bytes_len <= 0)
-        {
-            continue;
-        }
-        frame_pack_rx_.size = rx_bytes_len;
-        xQueueSend(*data_uart_rx_queue_, &frame_pack_rx_, 2 / portTICK_RATE_MS);
-#ifdef DEBUG_FISHBOT
-        print_frame_to_hex((uint8_t *)"rxraw",
-                           (uint8_t *)frame_pack_rx_.data, rx_bytes_len);
-        printf("rx_index=%d,rx_bytes_len=%d\n", rx_index, rx_bytes_len);
-#endif
-    }
+    tx_bytes_len = uart_write_bytes(UART_PROTOC_NUM, (char *)protocol_package_->data,
+                                    protocol_package_->size);
+    return tx_bytes_len;
 }
 
 bool uart_protocol_task_init(void)
 {
-    xTaskCreate(uart_rx_task, "uart_rx_task", 1024 * 2, NULL, 5,
-                NULL); //接收任务
-    xTaskCreate(uart_tx_task, "uart_tx_task", 1024 * 2, NULL, 5,
-                NULL); //发送任务
-    return true;
-}
-
-bool uart_protocol_recv_task_init(void)
-{
-    xTaskCreate(uart_rx_task, "uart_rx_task", 1024 * 2, NULL, 5,
-                NULL); //接收任务
+    uart_init();
+    is_uart_init_ = true;
     return true;
 }
