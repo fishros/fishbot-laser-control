@@ -41,11 +41,14 @@ static void connect_to_tcp_server()
     inet_ntoa_r(destAddr.sin_addr, addr_str, sizeof(addr_str) - 1);
     // create socket
     sock = socket(addr_family, SOCK_STREAM, ip_protocol);
+
     if (sock < 0)
     {
         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
         return;
     }
+    int flag = 1;
+    setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(flag));
     ESP_LOGI(TAG, "Socket created, connecting to %s:%d", ip_, port_);
     int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
     if (err != 0)
@@ -54,6 +57,7 @@ static void connect_to_tcp_server()
         close(sock);
         return;
     }
+    vTaskDelay(500 / portTICK_PERIOD_MS);
     is_tcp_client_init_ = true;
 }
 
@@ -62,7 +66,7 @@ int16_t tcp_client_tx_data(protocol_package_t *protocol_package_)
     static int16_t tx_bytes_len;
     if (is_tcp_client_init_ == false)
     {
-        vTaskDelay(10 / portTICK_PERIOD_MS);
+        vTaskDelay(20 / portTICK_PERIOD_MS);
         return -1;
     }
     tx_bytes_len = send(sock, (char *)protocol_package_->data, protocol_package_->size, 0);
@@ -74,8 +78,8 @@ int16_t tcp_client_tx_data(protocol_package_t *protocol_package_)
     if (tx_bytes_len < 0)
     {
         is_tcp_client_init_ = false;
-        printf("send len1=%d \n", tx_bytes_len);
     }
+    // printf("send len1=%d \n", tx_bytes_len);
     return tx_bytes_len;
 }
 
@@ -88,7 +92,7 @@ int16_t tcp_client_rx_data(protocol_package_t *protocol_package_)
         return -1;
     }
     rx_bytes_len =
-        recv(sock, protocol_package_->data, RX_BUF_SIZE - 1, 10 / portTICK_RATE_MS);
+        recv(sock, protocol_package_->data, RX_BUF_SIZE - 1, 0);
     if (rx_bytes_len > 0)
     {
         protocol_package_->size = rx_bytes_len;
@@ -98,13 +102,11 @@ int16_t tcp_client_rx_data(protocol_package_t *protocol_package_)
 
 static void tcp_client_reconnect_task(void *parameters)
 {
-
     while (true)
     {
         if (is_tcp_client_init_ == false)
         {
             connect_to_tcp_server();
-            vTaskDelay(1000 / portTICK_PERIOD_MS);
             continue;
         }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
@@ -119,8 +121,7 @@ static void tcp_client_reconnect_task(void *parameters)
  */
 bool tcp_client_protocol_task_init(void)
 {
-    connect_to_tcp_server();
-    xTaskCreate(tcp_client_reconnect_task, "tcp_client_reconnect_task", 1024 * 4, NULL, 5,
+    xTaskCreate(tcp_client_reconnect_task, "tcp_client_reconnect_task", 1024 * 2, NULL, 6,
                 NULL);
     return true;
 }

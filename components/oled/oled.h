@@ -1,3 +1,12 @@
+/**
+ * @author fishros (fishros@foxmail.com)
+ * @brief  待补充
+ * @version V1.0.0.220919
+ * @date 2022-0919
+ *
+ * 版权所有：FishBot Open Source Organization
+ *
+ */
 #ifndef __OLED_H__
 #define __OLED_H__
 

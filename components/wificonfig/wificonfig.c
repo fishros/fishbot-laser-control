@@ -1,3 +1,12 @@
+/**
+ * @author fishros (fishros@foxmail.com)
+ * @brief  待补充
+ * @version V1.0.0.220919
+ * @date 2022-0919
+ *
+ * 版权所有：FishBot Open Source Organization
+ *
+ */
 #include "wificonfig.h"
 
 /* The examples use smartconfig type that you can set via project configuration menu.

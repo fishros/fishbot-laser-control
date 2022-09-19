@@ -1,3 +1,12 @@
+/**
+ * @author fishros (fishros@foxmail.com)
+ * @brief  待补充
+ * @version V1.0.0.220919
+ * @date 2022-0919
+ *
+ * 版权所有：FishBot Open Source Organization
+ *
+ */
 #include "wificonfig.h"
 
 void command_restart()
@@ -33,11 +42,6 @@ void command_config_protocol_udp_client(char *ip, char *port)
 
 void parse_command(uint8_t count, char result[][32])
 {
-    printf("======================\n");
-    for (uint8_t index = 0; index < count; index++)
-    {
-        printf("%s\n", result[index]);
-    }
     if (strcmp(result[0], "restart") == 0)
     {
         command_restart();

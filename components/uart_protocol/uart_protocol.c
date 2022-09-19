@@ -1,10 +1,8 @@
-
 /**
- * @file uart_protocol.c
- * @author cuizhongren (1326986768@qq.com)
- * @brief
- * @version 0.1
- * @date 2022-07-08
+ * @author fishros (fishros@foxmail.com)
+ * @brief  待补充
+ * @version V1.0.0.220919
+ * @date 2022-0919
  *
  * 版权所有：FishBot Open Source Organization
  *
@@ -45,23 +43,15 @@ int16_t uart_rx_data(protocol_package_t *protocol_package_)
     // static int length = 0;
     static int rx_bytes_len;
     static size_t length;
-    // ESP_LOGI("UART", "47");
-    uart_get_buffered_data_len(UART_PROTOC_NUM, &length);
-    // ESP_LOGI("UART", "49,%d", length);
-    if (length <= 0)
-    {
-        return -1;
-    }
     rx_bytes_len = uart_read_bytes(UART_PROTOC_NUM, protocol_package_->data,
-                                   length, 0);
-    if(rx_bytes_len<=0)
-    {
-        return -1;
-    }
+                                   RX_BUF_SIZE, 6 / portTICK_PERIOD_MS);
     protocol_package_->size = rx_bytes_len;
+    vTaskDelay(2 / portTICK_PERIOD_MS);
+
+
 #ifdef DEBUG_FISHBOT
-    print_frame_to_hex((uint8_t *)"rxraw",
-                       (uint8_t *)protocol_package_->data, rx_bytes_len);
+    // print_frame_to_hex((uint8_t *)"rxraw",
+    //                    (uint8_t *)protocol_package_->data, rx_bytes_len);
     printf("rx_bytes_len=%d\n", rx_bytes_len);
 #endif
     return rx_bytes_len;

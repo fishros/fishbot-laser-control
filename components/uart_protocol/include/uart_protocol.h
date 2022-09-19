@@ -1,9 +1,8 @@
 /**
- * @file uart_protocol.h
- * @author cuizhongren (1326986768@qq.com)
- * @brief
- * @version 0.1
- * @date 2022-07-08
+ * @author fishros (fishros@foxmail.com)
+ * @brief  待补充
+ * @version V1.0.0.220919
+ * @date 2022-0919
  *
  * 版权所有：FishBot Open Source Organization
  *
