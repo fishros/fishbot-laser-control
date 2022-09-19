@@ -34,7 +34,7 @@ static uint32_t udp_port = 3347;
 static protocol_package_t uart_rx_package_;
 static protocol_package_t tcp_client_rx_package_;
 
-static void data_rx_tx_data(void *parameters)
+static void data_uart_rx_data(void *parameters)
 {
     static int16_t uart_rx_len;
     static int16_t tcp_client_rx_len;
@@ -45,11 +45,23 @@ static void data_rx_tx_data(void *parameters)
         {
             tcp_client_tx_data(&uart_rx_package_);
         }
-        // tcp_client_rx_len = tcp_client_rx_data(&tcp_client_rx_package_);
-        // if (tcp_client_rx_len > 0)
-        // {
-        //     uart_tx_data(&tcp_client_rx_package_);
-        // }
+        esp_task_wdt_reset();
+    }
+    vTaskDelete(NULL);
+}
+
+static void data_tcp_rx_data(void *parameters)
+{
+    static int16_t uart_rx_len;
+    static int16_t tcp_client_rx_len;
+    while (true)
+    {
+        tcp_client_rx_len = tcp_client_rx_data(&tcp_client_rx_package_);
+        if (tcp_client_rx_len > 0)
+        {
+            uart_tx_data(&tcp_client_rx_package_);
+        }
+        vTaskDelay(2 / portTICK_PERIOD_MS);
         esp_task_wdt_reset();
     }
     vTaskDelete(NULL);
@@ -81,13 +93,15 @@ void app_main(void)
     /*wifi config*/
     wifi_init();
     wifi_set_as_sta(ssid, password);
-    
+
     /*uart init*/
     uart_protocol_task_init();
 
     /*tcp_client config*/
     tcp_client_config_init(udp_ip, udp_port);
     tcp_client_protocol_task_init();
-    xTaskCreate(data_rx_tx_data, "data_rx_tx_data", 4096 * 2, NULL, 4,
+    xTaskCreate(data_uart_rx_data, "data_uart_rx_data", 4096 * 2, NULL, 4,
+                NULL);
+    xTaskCreate(data_tcp_rx_data, "data_tcp_rx_data", 4096 * 2, NULL, 4,
                 NULL);
 }
