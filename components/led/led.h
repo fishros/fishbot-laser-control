@@ -39,6 +39,12 @@ void led_set_delay(uint16_t led_delay);
 bool led_init(void);
 
 /**
+ * @brief LED flash
+ * 
+ */
+void led_flash();
+
+/**
  * @brief led闪烁测试
  *
  * @return true

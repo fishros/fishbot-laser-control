@@ -44,6 +44,7 @@ static void data_uart_rx_data(void *parameters)
         if (uart_rx_len > 0)
         {
             tcp_client_tx_data(&uart_rx_package_);
+            led_flash();
         }
         esp_task_wdt_reset();
     }
@@ -59,6 +60,7 @@ static void data_tcp_rx_data(void *parameters)
         if (tcp_client_rx_len > 0)
         {
             uart_tx_data(&tcp_client_rx_package_);
+            led_flash();
         }
         vTaskDelay(2 / portTICK_PERIOD_MS);
         esp_task_wdt_reset();
@@ -71,6 +73,7 @@ void app_main(void)
     key_init();
     led_init();
     oled_init();
+    led_task_init();
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
     if (is_config_wifi == NVS_DATA_UINT8_NONE || is_config_wifi == 0)
@@ -79,7 +82,6 @@ void app_main(void)
         while (true)
         {
             wificonfig_byuart();
-            led_task_init();
         }
     }
     /*read config*/

@@ -60,7 +60,6 @@ static void connect_to_tcp_server()
         close(sock);
         return;
     }
-    vTaskDelay(500 / portTICK_PERIOD_MS);
     is_tcp_client_init_ = true;
 }
 
@@ -110,6 +109,7 @@ static void tcp_client_reconnect_task(void *parameters)
         if (is_tcp_client_init_ == false)
         {
             connect_to_tcp_server();
+            vTaskDelay(500 / portTICK_PERIOD_MS);
             continue;
         }
         vTaskDelay(1000 / portTICK_PERIOD_MS);
