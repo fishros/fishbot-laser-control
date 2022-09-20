@@ -1,8 +1,8 @@
 /**
  * @author fishros (fishros@foxmail.com)
- * @brief  待补充
+ * @brief  主函数
  * @version V1.0.0.220919
- * @date 2022-0919
+ * @date 2022-09-19
  *
  * 版权所有：FishBot Open Source Organization
  *
@@ -18,6 +18,7 @@
 #include "mwifi.h"
 #include "nvs.h"
 #include "oled.h"
+#include "led.h"
 #include "protocol.h"
 #include "tcp_client_protocol.h"
 #include "tcp_server.h"
@@ -37,7 +38,6 @@ static protocol_package_t tcp_client_rx_package_;
 static void data_uart_rx_data(void *parameters)
 {
     static int16_t uart_rx_len;
-    static int16_t tcp_client_rx_len;
     while (true)
     {
         uart_rx_len = uart_rx_data(&uart_rx_package_);
@@ -52,7 +52,6 @@ static void data_uart_rx_data(void *parameters)
 
 static void data_tcp_rx_data(void *parameters)
 {
-    static int16_t uart_rx_len;
     static int16_t tcp_client_rx_len;
     while (true)
     {
@@ -70,6 +69,7 @@ static void data_tcp_rx_data(void *parameters)
 void app_main(void)
 {
     key_init();
+    led_init();
     oled_init();
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
@@ -79,6 +79,7 @@ void app_main(void)
         while (true)
         {
             wificonfig_byuart();
+            led_task_init();
         }
     }
     /*read config*/
@@ -90,6 +91,8 @@ void app_main(void)
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
            password, udp_ip, udp_port_str, udp_port);
 
+    led_set_delay(500);
+    
     /*wifi config*/
     wifi_init();
     wifi_set_as_sta(ssid, password);

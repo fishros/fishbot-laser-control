@@ -1,8 +1,11 @@
-/*
- * @作者: 小鱼
- * @公众号: 鱼香ROS
- * @QQ交流群: 2642868461
- * @描述: file content
+/**
+ * @author fishros (fishros@foxmail.com)
+ * @brief  待补充
+ * @version V1.0.0.220919
+ * @date 2022-09-19
+ *
+ * 版权所有：FishBot Open Source Organization
+ *
  */
 #include "tcp_client_protocol.h"
 
