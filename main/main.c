@@ -73,7 +73,6 @@ void app_main(void)
     key_init();
     led_init();
     oled_init();
-    led_task_init();
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
     if (is_config_wifi == NVS_DATA_UINT8_NONE || is_config_wifi == 0)
@@ -82,8 +81,10 @@ void app_main(void)
         while (true)
         {
             wificonfig_byuart();
+            led_flash();
         }
     }
+    led_task_init();
     /*read config*/
     nvs_read_string("ssid", ssid, SSID_LEN);
     nvs_read_string("password", password, PASSWORD_LEN);

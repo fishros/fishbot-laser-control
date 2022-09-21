@@ -42,11 +42,11 @@ bool led_init(void)
 }
 bool led_test(void)
 {
-  led_set(LED_BLUE, 1);
-  vTaskDelay(1000 / portTICK_RATE_MS);
   led_set(LED_BLUE, 0);
-  vTaskDelay(1000 / portTICK_RATE_MS);
+  vTaskDelay(500 / portTICK_RATE_MS);
   led_set(LED_BLUE, 1);
+  vTaskDelay(500 / portTICK_RATE_MS);
+  led_set(LED_BLUE, 0);
   return is_init;
 }
 
