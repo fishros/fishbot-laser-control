@@ -47,7 +47,7 @@ bool led_test(void)
   led_set(LED_BLUE, 1);
   vTaskDelay(500 / portTICK_RATE_MS);
   led_set(LED_BLUE, 0);
-  return is_init;
+  return true;
 }
 
 void led_set(uint8_t id, bool value)
