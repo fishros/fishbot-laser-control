@@ -25,6 +25,7 @@
 #include "uart_protocol.h"
 #include "wificonfig.h"
 #include "esp_task_wdt.h"
+#include "mpwm.h"
 
 static char ssid[SSID_LEN];
 static char password[PASSWORD_LEN];
@@ -70,8 +71,11 @@ static void data_tcp_rx_data(void *parameters)
 
 void app_main(void)
 {
+    mpwm_init();
     key_init();
     led_init();
+    pwm_set_percent(0,600);
+    pwm_set_percent(1,600);
     // oled_init();
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
