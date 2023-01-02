@@ -48,4 +48,6 @@ void wificonfig_start(void);
  */
 void wificonfig_byuart(void);
 
+void print_config();
+
 #endif // WIFICONFIG_H_

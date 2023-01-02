@@ -11,7 +11,7 @@
 
 static const char *TAG = "NVS_OPERATE";
 
-//数据库的表名
+// 数据库的表名
 static const char *TB_SELF = "fishbot";
 
 void nvs_read_struct(char *struct_name, void *pStruct, uint32_t length)
@@ -31,31 +31,36 @@ void nvs_read_struct(char *struct_name, void *pStruct, uint32_t length)
     nvs_close(mHandleNvsRead);
 }
 
-void nvs_read_string(char *string_name, char *data, size_t len)
+int8_t nvs_read_string(char *string_name, char *data, const char *defaultvalue, size_t len)
 {
     nvs_handle mHandleNvsRead;
     esp_err_t err = nvs_open(TB_SELF, NVS_READWRITE, &mHandleNvsRead);
     err = nvs_get_str(mHandleNvsRead, string_name, data, &len);
-    if (err == ESP_OK)
-        ESP_LOGI(TAG, "get str data = %s ", data);
-    else
-        ESP_LOGI(TAG, "get str data error");
     nvs_close(mHandleNvsRead);
+    if (err == ESP_OK)
+    {
+        return 0;
+    }
+    else
+    {
+        sprintf(data, "%s", defaultvalue);
+        return -1;
+    }
 }
 
 void nvs_read_uint8(char *i8_name, int8_t *i8)
 {
     nvs_handle mHandleNvsRead;
     esp_err_t err = nvs_open(TB_SELF, NVS_READWRITE, &mHandleNvsRead);
-    //读取 i8
+    // 读取 i8
     err = nvs_get_i8(mHandleNvsRead, i8_name, i8);
     if (err == ESP_OK)
     {
-        ESP_LOGI(TAG, "get %s nvs_i8 = %d ", i8_name, *i8);
+        // ESP_LOGI(TAG, "get %s nvs_i8 = %d ", i8_name, *i8);
     }
     else
     {
-        ESP_LOGI(TAG, "get nvs_i8 %s error", i8_name);
+        // ESP_LOGI(TAG, "get nvs_i8 %s error", i8_name);
         *i8 = NVS_DATA_UINT8_NONE;
     }
     nvs_close(mHandleNvsRead);
@@ -65,25 +70,27 @@ void nvs_write_uint8(char *i8_name, int8_t i8)
 {
     nvs_handle mHandleNvs;
     esp_err_t err = nvs_open(TB_SELF, NVS_READWRITE, &mHandleNvs);
-    //保存一个 int8_t
+    // 保存一个 int8_t
     err = nvs_set_i8(mHandleNvs, i8_name, i8);
-    if (err != ESP_OK)
-        ESP_LOGE(TAG, "Save NVS %s  error !!", i8_name);
-    else
-        ESP_LOGI(TAG, "Save NVS %s  i8 ok !! nvs_i8 = %d ", i8_name, i8);
+    // if (err != ESP_OK)
+    //     ESP_LOGE(TAG, "Save NVS %s  error !!", i8_name);
+    // else
+    //     ESP_LOGI(TAG, "Save NVS %s  i8 ok !! nvs_i8 = %d ", i8_name, i8);
 
     nvs_commit(mHandleNvs);
     nvs_close(mHandleNvs);
 }
 
-void nvs_write_string(char *string_name, char *string_value)
+int8_t nvs_write_string(char *string_name, char *string_value)
 {
     nvs_handle mHandleNvs;
     esp_err_t err = nvs_open(TB_SELF, NVS_READWRITE, &mHandleNvs);
     if (nvs_set_str(mHandleNvs, string_name, string_value) != ESP_OK)
-        ESP_LOGE(TAG, "Save NVS String Fail !!  ");
-    else
-        ESP_LOGI(TAG, "Save NVS String ok !! data : %s ", string_value);
+        return 0;
+    return -1;
+    // ESP_LOGE(TAG, "Save NVS String Fail !!  ");
+    // else
+    // ESP_LOGI(TAG, "Save NVS String ok !! data : %s ", string_value);
 
     nvs_commit(mHandleNvs);
     nvs_close(mHandleNvs);

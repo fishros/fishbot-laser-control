@@ -74,14 +74,15 @@ void app_main(void)
     mpwm_init();
     key_init();
     led_init();
-    pwm_set_percent(0,600);
-    pwm_set_percent(1,600);
-    // oled_init();
+    pwm_set_percent(0, 600);
+    pwm_set_percent(1, 600);
+    print_config();
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
     if (is_config_wifi == NVS_DATA_UINT8_NONE || is_config_wifi == 0)
     {
         // oled_ascii(0, 2, "Please Config First!");
+        printf("$status=ready\n");
         while (true)
         {
             wificonfig_byuart();
@@ -90,16 +91,16 @@ void app_main(void)
     }
     led_task_init();
     /*read config*/
-    nvs_read_string("ssid", ssid, SSID_LEN);
-    nvs_read_string("password", password, PASSWORD_LEN);
-    nvs_read_string("udp_ip", udp_ip, UDP_IP_LEN);
-    nvs_read_string("udp_port", udp_port_str, UDP_PORT_LEN);
+    nvs_read_string("wifi_ssid", ssid, "fishbot", SSID_LEN);
+    nvs_read_string("wifi_pswd", password, "12345678", PASSWORD_LEN);
+    nvs_read_string("server_ip", udp_ip, "192.168.4.1", UDP_IP_LEN);
+    nvs_read_string("server_port", udp_port_str, "8889", UDP_PORT_LEN);
     udp_port = atoi(udp_port_str);
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
            password, udp_ip, udp_port_str, udp_port);
 
     led_set_delay(500);
-    
+
     /*wifi config*/
     wifi_init();
     wifi_set_as_sta(ssid, password);

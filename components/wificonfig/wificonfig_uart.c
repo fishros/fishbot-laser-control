@@ -9,68 +9,61 @@
  */
 #include "wificonfig.h"
 
+static char ssid[SSID_LEN];
+static char password[PASSWORD_LEN];
+static char server_ip[UDP_IP_LEN] = {"192.168.0.108"};
+static char server_port[UDP_PORT_LEN] = {"3347"};
+
 void command_restart()
 {
     esp_restart();
 }
 
-void command_config_wifi_sta(char *ssid, char *password)
+void print_config()
 {
-    char rssid[SSID_LEN];
-    char rpassword[PASSWORD_LEN];
-    sprintf(rssid, "%s", ssid);
-    sprintf(rpassword, "%s", password);
-    // nvs write ssid password
-    printf("config wifi %s, %s\n", ssid, password);
-    nvs_write_string("ssid", (char *)rssid);
-    nvs_write_string("password", (char *)rpassword);
-    nvs_write_uint8("is_smart", 1);
-}
-
-void command_config_protocol_udp_client(char *ip, char *port)
-{
-    // write ip and port and checkout mode
-    char rip[UDP_IP_LEN];
-    char rport[UDP_PORT_LEN];
-    sprintf(rip, "%s", ip);
-    sprintf(rport, "%s", port);
-    // nvs write ssid password
-    nvs_write_string("udp_ip", rip);
-    nvs_write_string("udp_port", rport);
-    nvs_write_uint8("is_smart", 1);
+    nvs_read_string("wifi_ssid", ssid, "fishbot", SSID_LEN);
+    nvs_read_string("wifi_pswd", password, "12345678", PASSWORD_LEN);
+    nvs_read_string("server_ip", server_ip, "192.168.4.1", UDP_IP_LEN);
+    nvs_read_string("server_port", server_port, "8889", UDP_PORT_LEN);
+    printf("$%s=%s\n", "wifi_ssid", ssid);
+    printf("$%s=%s\n", "wifi_pswd", password);
+    printf("$%s=%s\n", "server_ip", server_ip);
+    printf("$%s=%s\n", "server_port", server_port);
+    printf("$board=laser_board\n");
 }
 
 void parse_command(uint8_t count, char result[][32])
 {
-    if (strcmp(result[0], "restart") == 0)
+    if (strcmp(result[0], "command") == 0)
     {
-        command_restart();
+        if (strcmp(result[1], "restart") == 0)
+        {
+            command_restart();
+        }
+        else if (strcmp(result[1], "read_config") == 0)
+        {
+            print_config();
+        }
+        return;
     }
-
-    if (strcmp(result[0], "config") == 0)
+    else
     {
-        if (strcmp(result[1], "wifi") == 0)
-        {
-            command_config_wifi_sta(result[2], result[3]);
-        }
-        if (strcmp(result[1], "proto") == 0)
-        {
-            if (strcmp(result[2], "udp_client") == 0)
-            {
-                command_config_protocol_udp_client(result[3], result[4]);
-            }
-        }
+        nvs_write_string(result[0], result[1]);
+        printf("$result=ok\n");
+        nvs_write_uint8("is_smart", 1);
     }
 }
 
-uint8_t split_str(char *line, char result[][32])
+int8_t split_str(const char *line, char result[][32])
 {
+    if (line[0] != '$')
+        return -1;
     uint16_t index = 0;
     uint16_t count = 0;
     uint16_t temp_index = 0;
-    for (index = 0; line[index] != '\0'; index++)
+    for (index = 1; line[index] != '\0'; index++)
     {
-        if (line[index] == ',')
+        if (line[index] == '=')
         {
             result[count++][temp_index++] = '\0';
             temp_index = 0;
@@ -79,7 +72,11 @@ uint8_t split_str(char *line, char result[][32])
         result[count][temp_index++] = line[index];
     }
     result[count][temp_index++] = '\0';
-    return count + 1;
+    if (count != 1)
+    {
+        return -1;
+    }
+    return count;
 }
 
 void wificonfig_byuart(void)
@@ -87,7 +84,6 @@ void wificonfig_byuart(void)
     char line[512];
     char result[10][32];
     int count = 0;
-    printf("wait for command:\n");
     while (count < 128)
     {
         int c = fgetc(stdin);
@@ -104,5 +100,10 @@ void wificonfig_byuart(void)
         vTaskDelay(10 / portTICK_PERIOD_MS);
     }
     count = split_str(line, result);
+    if (count <= 0)
+    {
+        printf("$result=error parse\n");
+        return;
+    }
     parse_command(count, result);
 }

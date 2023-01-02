@@ -36,6 +36,7 @@
         "thread": "c",
         "stdlib.h": "c",
         "pwm.h": "c",
-        "mpwm.h": "c"
+        "mpwm.h": "c",
+        "functional": "cpp"
     }
 }
