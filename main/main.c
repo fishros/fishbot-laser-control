@@ -71,6 +71,7 @@ static void data_tcp_rx_data(void *parameters)
 
 void app_main(void)
 {
+    oled_init();
     mpwm_init();
     key_init();
     led_init();
@@ -81,7 +82,8 @@ void app_main(void)
     nvs_read_uint8("is_smart", &is_config_wifi);
     if (is_config_wifi == NVS_DATA_UINT8_NONE || is_config_wifi == 0)
     {
-        // oled_ascii(0, 2, "Please Config First!");
+        oled_ascii(0, 2, "MODE   :CONFIG MODE");
+        oled_ascii(0, 3, "STATUS :Wait config");
         printf("$status=ready\n");
         while (true)
         {
@@ -89,6 +91,9 @@ void app_main(void)
             led_flash();
         }
     }
+    oled_ascii(0, 2, "MODE:RUN MODE");
+    oled_ascii(0, 3, "WIFI:Wait connect");
+
     led_task_init();
     /*read config*/
     nvs_read_string("wifi_ssid", ssid, "fishbot", SSID_LEN);
@@ -98,6 +103,22 @@ void app_main(void)
     udp_port = atoi(udp_port_str);
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
            password, udp_ip, udp_port_str, udp_port);
+    // 显示相关
+    char oled_ssid[128];
+    sprintf(oled_ssid, "SSID:%s", ssid);
+    oled_ascii(0, 4, oled_ssid);
+
+    char oled_pswd[128];
+    sprintf(oled_pswd, "PSWD:%s", password);
+    oled_ascii(0, 5, oled_pswd);
+
+    char oled_sip[128];
+    sprintf(oled_sip, "S_IP:%s", udp_ip);
+    oled_ascii(0, 6, oled_sip);
+
+    char oled_sport[128];
+    sprintf(oled_sport, "PORT:%s", udp_port_str);
+    oled_ascii(0, 7, oled_sport);
 
     led_set_delay(500);
 

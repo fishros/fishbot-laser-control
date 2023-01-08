@@ -32,8 +32,8 @@ static void event_handler(void *arg, esp_event_base_t event_base,
     {
         ip_event_got_ip_t *event = (ip_event_got_ip_t *)event_data;
         char ip[22];
-        sprintf(ip, "HOST:%s", ip4addr_ntoa(&event->ip_info.ip));
-        oled_ascii(0, 2, ip);
+        sprintf(ip, "IP  :%s  ", ip4addr_ntoa(&event->ip_info.ip));
+        oled_ascii(0, 3, ip);
         ESP_LOGI(TAG, "got ip:%s", ip4addr_ntoa(&event->ip_info.ip));
         xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
     }

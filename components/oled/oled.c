@@ -142,6 +142,8 @@ uint8_t ascii[95][6] = {
     {0x14, 0x14, 0x14, 0x14, 0x14, 0x14}, // horiz lines
 };
 
+static int have_oled = 1;
+
 /**
  * i2c init
  */
@@ -160,6 +162,7 @@ static void i2c_master_init()
 
 void oled_clear()
 {
+    if(!have_oled) return;
     for (int x = 0; x < 8; x++)
     {
         oled_write(0x00, 0xb0 + x);
@@ -170,10 +173,10 @@ void oled_clear()
     }
 }
 
-//初始化oled
+// 初始化oled
 void oled_init()
 {
-    uint8_t y = 0, i;
+    // uint8_t y = 0;
     uint8_t cmd_data[] = {0xae, 0x20, 0x10, 0xb0, 0xc8, 0x00,
                           0x10, 0x40, 0x81, 0x7f, 0xa1, 0xa6,
                           0xa8, 0x3f, 0xa4, 0xd3, 0x00, 0xd5,
@@ -184,12 +187,13 @@ void oled_init()
     vTaskDelay(200 / portTICK_RATE_MS);
 
     oled_clear();
-    oled_ascii(0, 0, "   FishTcp2Server   ");
-    oled_ascii(0, 1, " www.fishros.org.cn ");
+    oled_ascii(0, 0, "  -fishlaserv1.0.0- ");
+    oled_ascii(0, 1, "---------------------");
 }
 
 void oled_ascii(uint8_t x, uint8_t y, char *str)
 {
+    if(!have_oled) return;
     oled_setxy(x, y);
     for (int i = 0; i < 22 && (str[i] != 0); i++)
     {

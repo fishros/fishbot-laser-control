@@ -25,7 +25,6 @@
 #include <time.h>
 
 #define FISHBOT_MODULE "KEY"
-static const char *TAG = "KEY";
 
 #define GPIO_INPUT_IO 0
 
@@ -43,28 +42,22 @@ static void gpio_task_example(void *arg)
     time_t now, last_time;
     time(&now);
     time(&last_time);
-    static uint8_t count = 0;
+    // static uint8_t count = 0;
     for (;;)
     {
         if (xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY))
         {
             printf("GPIO[%d] intr, val: %d\n", io_num, gpio_get_level(io_num));
-            if (gpio_get_level(io_num) == 1)
-                count++;
-            time(&now);
-            if (now - last_time > 2)
-            {
-                last_time = now;
-                count = 0;
-            }
-
-            if (count > 1)
-            {
+            int8_t is_config_wifi;
+            nvs_read_uint8("is_smart", &is_config_wifi);
+            if(is_config_wifi==0){
+                nvs_write_uint8("is_smart", 1);
+            }else{
                 nvs_write_uint8("is_smart", 0);
-                // restart
-                vTaskDelay(20);
-                esp_restart();
             }
+            // restart
+            vTaskDelay(20);
+            esp_restart();
         }
     }
 }
