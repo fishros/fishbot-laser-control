@@ -19,6 +19,7 @@
 #include "esp_log.h"
 
 #define NVS_DATA_UINT8_NONE -127
+#define NVS_DATA_UINT8_CONFIG 1
 
 void nvs_test(void);
 

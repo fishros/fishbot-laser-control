@@ -29,10 +29,10 @@
 #define I2C_EXAMPLE_MASTER_TX_BUF_DISABLE 0 /*!< I2C master do not need buffer */
 #define I2C_EXAMPLE_MASTER_RX_BUF_DISABLE 0 /*!< I2C master do not need buffer */
 
-#define OLED_ADDR 0x3C             /*!< slave address for MPU6050 sensor */
+#define OLED_ADDR 0x3C
 #define WRITE_BIT I2C_MASTER_WRITE /*!< I2C master write */
 #define READ_BIT I2C_MASTER_READ   /*!< I2C master read */
-#define ACK_CHECK_EN 0x1           /*!< I2C master will check ack from slave*/
+#define ACK_CHECK_EN 0x01          /*!< I2C master will check ack from slave*/
 #define ACK_CHECK_DIS 0x0          /*!< I2C master will not check ack from slave */
 #define ACK_VAL 0x0                /*!< I2C ack value */
 #define NACK_VAL 0x1               /*!< I2C nack value */
@@ -153,16 +153,17 @@ static void i2c_master_init()
     i2c_config_t conf;
     conf.mode = I2C_MODE_MASTER;
     conf.sda_io_num = I2C_MASTER_SDA_IO;
-    conf.sda_pullup_en = 0;
+    conf.sda_pullup_en = 1;
     conf.scl_io_num = I2C_MASTER_SCL_IO;
-    conf.scl_pullup_en = 0;
+    conf.scl_pullup_en = 1;
     ESP_ERROR_CHECK(i2c_driver_install(i2c_master_port, conf.mode));
     ESP_ERROR_CHECK(i2c_param_config(i2c_master_port, &conf));
 }
 
 void oled_clear()
 {
-    if(!have_oled) return;
+    if (!have_oled)
+        return;
     for (int x = 0; x < 8; x++)
     {
         oled_write(0x00, 0xb0 + x);
@@ -177,13 +178,22 @@ void oled_clear()
 void oled_init()
 {
     // uint8_t y = 0;
-    uint8_t cmd_data[] = {0xae, 0x20, 0x10, 0xb0, 0xc8, 0x00,
-                          0x10, 0x40, 0x81, 0x7f, 0xa1, 0xa6,
-                          0xa8, 0x3f, 0xa4, 0xd3, 0x00, 0xd5,
-                          0xf0, 0xd9, 0x22, 0xda, 0x12, 0xdb,
-                          0x20, 0x8d, 0x14, 0xaf};
+    // ssd1306
+    uint8_t cmd_data1[] = {0xae, 0x20, 0x10, 0xb0, 0xc8, 0x00,
+                           0x10, 0x40, 0x81, 0x7f, 0xa1, 0xa6,
+                           0xa8, 0x3f, 0xa4, 0xd3, 0x00, 0xd5,
+                           0xf0, 0xd9, 0x22, 0xda, 0x12, 0xdb,
+                           0x20, 0x8d, 0x14, 0xaf};
+
+    uint8_t cmd_ssd1315[] = {0xae, 0x00, 0x10, 0x40, 0x81, 0xcf, 0xa1, 0xc8, 0xa6, 0xa8,
+                             0x3f, 0xd3, 0x00, 0xd5, 0x80, 0xd9, 0xf1, 0xda, 0x12, 0xdb,
+                             0x40, 0x20, 0x00, 0x8d, 0x14, 0xa4, 0xa6, 0xaf};
     i2c_master_init();
-    oled_writes(0x00, cmd_data, 28);
+    for (int i = 0; i < 28; i++)
+    {
+        oled_write(0x00, cmd_ssd1315[i]);
+    }
+    // oled_writes(0x00, cmd_ssd1315, 28);
     vTaskDelay(200 / portTICK_RATE_MS);
 
     oled_clear();
@@ -193,7 +203,8 @@ void oled_init()
 
 void oled_ascii(uint8_t x, uint8_t y, char *str)
 {
-    if(!have_oled) return;
+    if (!have_oled)
+        return;
     oled_setxy(x, y);
     for (int i = 0; i < 22 && (str[i] != 0); i++)
     {
@@ -202,14 +213,6 @@ void oled_ascii(uint8_t x, uint8_t y, char *str)
             oled_write(0x40, ascii[str[i] - 32][j]);
         }
     }
-    // oled_setxy(x, y + 1);
-    // for (int i = 0; i < 16 && (str[i] != 0); i++)
-    // {
-    //     for (int j = 8; j < 16; j++)
-    //     {
-    //         oled_write(0x40, ascii[str[i] - 32][j]);
-    //     }
-    // }
 }
 
 void oled_write(uint8_t reg_address, uint8_t data)

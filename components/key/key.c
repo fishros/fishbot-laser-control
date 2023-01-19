@@ -20,6 +20,7 @@
 
 #include "esp_log.h"
 #include "esp_system.h"
+#include "esp_timer.h"
 
 #include "nvs.h"
 #include <time.h>
@@ -39,26 +40,34 @@ static void gpio_isr_handler(void *arg)
 static void gpio_task_example(void *arg)
 {
     uint32_t io_num;
-    time_t now, last_time;
-    time(&now);
-    time(&last_time);
-    // static uint8_t count = 0;
+    uint64_t now = (uint64_t)(esp_timer_get_time() / 1000ULL);
+    uint64_t last_time = 0;
     for (;;)
     {
         if (xQueueReceive(gpio_evt_queue, &io_num, portMAX_DELAY))
         {
-            printf("GPIO[%d] intr, val: %d\n", io_num, gpio_get_level(io_num));
-            int8_t is_config_wifi;
-            nvs_read_uint8("is_smart", &is_config_wifi);
-            if(is_config_wifi==0){
-                nvs_write_uint8("is_smart", 1);
-            }else{
-                nvs_write_uint8("is_smart", 0);
+            now = (esp_timer_get_time() / 1000ULL);
+            uint32_t dt = now - last_time;
+            // printf("GPIO[%d] intr, val: %d at dt=%d\n", io_num, gpio_get_level(io_num), dt);
+            if (dt < 500 && last_time!=0)
+            {
+                int8_t is_config_wifi;
+                nvs_read_uint8("is_smart", &is_config_wifi);
+                if (is_config_wifi == NVS_DATA_UINT8_NONE)
+                {
+                    nvs_write_uint8("is_smart", NVS_DATA_UINT8_CONFIG);
+                }
+                else
+                {
+                    nvs_write_uint8("is_smart", NVS_DATA_UINT8_NONE);
+                }
+                // restart
+                vTaskDelay(20 / portTICK_RATE_MS);
+                esp_restart();
             }
-            // restart
-            vTaskDelay(20);
-            esp_restart();
+            last_time = now;
         }
+        vTaskDelay(10 / portTICK_RATE_MS);
     }
 }
 

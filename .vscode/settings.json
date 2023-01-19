@@ -37,6 +37,7 @@
         "stdlib.h": "c",
         "pwm.h": "c",
         "mpwm.h": "c",
-        "functional": "cpp"
+        "functional": "cpp",
+        "errno.h": "c"
     }
 }

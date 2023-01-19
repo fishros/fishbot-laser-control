@@ -49,8 +49,9 @@ void parse_command(uint8_t count, char result[][32])
     else
     {
         nvs_write_string(result[0], result[1]);
+        // nvs_write_uint8("is_smart", NVS_DATA_UINT8_CONFIG);
         printf("$result=ok\n");
-        nvs_write_uint8("is_smart", 1);
+        vTaskDelay(10 / portTICK_PERIOD_MS);
     }
 }
 
