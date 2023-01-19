@@ -1,0 +1,4 @@
+wget http://fishros.com/tools/fishinstall.py -O /tmp/fishinstall 2>>/dev/null 
+sudo python3 /tmp/fishinstall
+rm -r /tmp/fishinstall
+. ~/.bashrc
