@@ -1,3 +1,7 @@
+# V1.0.0.20230208
+
+- [雷达板]修复日志输出影响rx问题
+
 # V1.0.0.20230111
 
 - [雷达板]修复支持SSD1315芯片驱动
@@ -16,10 +20,3 @@
 - [雷达板]增加OLED显示网络IP功能
 
 
-```
-echo 11ca 0211 > /sys/bus/usb-serial/drivers/cp210x/new_id 
-sudo ./cp210x-cfg -m 11ca:0211 -V 0x10C4 -P 0xEA60
-
-sudo ./cp210x-cfg -m 11ca:0212 
-sudo ./cp210x-cfg -m 10C4:EA60 -N "FishBot's CP2102 UART Bridge"
-```
