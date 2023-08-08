@@ -29,8 +29,8 @@
 
 static char ssid[SSID_LEN];
 static char password[PASSWORD_LEN];
-static char udp_ip[UDP_IP_LEN];
-static char udp_port_str[UDP_PORT_LEN];
+static char udp_ip[UDP_IP_LEN] = {"192.168.0.108"};
+static char udp_port_str[UDP_PORT_LEN] = {"3347"};
 static uint32_t udp_port = 3347;
 
 static protocol_package_t uart_rx_package_;
@@ -88,6 +88,7 @@ void app_main(void)
         while (true)
         {
             wificonfig_byuart();
+            // led_flash();
         }
     }
     oled_ascii(0, 2, "MODE:RUN MODE");
@@ -97,7 +98,7 @@ void app_main(void)
     /*read config*/
     nvs_read_string("wifi_ssid", ssid, "fishbot", SSID_LEN);
     nvs_read_string("wifi_pswd", password, "12345678", PASSWORD_LEN);
-    nvs_read_string("server_ip", udp_ip, "192.168.2.105", UDP_IP_LEN);
+    nvs_read_string("server_ip", udp_ip, "192.168.4.1", UDP_IP_LEN);
     nvs_read_string("server_port", udp_port_str, "8889", UDP_PORT_LEN);
     udp_port = atoi(udp_port_str);
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
