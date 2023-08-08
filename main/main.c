@@ -32,6 +32,8 @@ static char password[PASSWORD_LEN];
 static char udp_ip[UDP_IP_LEN] = {"192.168.0.108"};
 static char udp_port_str[UDP_PORT_LEN] = {"3347"};
 static uint32_t udp_port = 3347;
+static char motor_speed_str[MOTOR_SPEED_LEN] = {"600"};
+static uint32_t motor_speed = 600;
 
 static protocol_package_t uart_rx_package_;
 static protocol_package_t tcp_client_rx_package_;
@@ -75,11 +77,14 @@ void app_main(void)
     mpwm_init();
     key_init();
     led_init();
-    pwm_set_percent(0, 600);
-    pwm_set_percent(1, 600);
     print_config();
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
+    nvs_read_string("motor_speed", motor_speed_str, "600", MOTOR_SPEED_LEN);
+    motor_speed = atoi(motor_speed_str);
+    pwm_set_percent(0, motor_speed);
+    pwm_set_percent(1, motor_speed);
+
     if (is_config_wifi == NVS_DATA_UINT8_NONE)
     {
         oled_ascii(0, 2, "MODE   :CONFIG MODE");
@@ -88,7 +93,11 @@ void app_main(void)
         while (true)
         {
             wificonfig_byuart();
-            // led_flash();
+            led_flash();
+            nvs_read_string("motor_speed", motor_speed_str, "600", MOTOR_SPEED_LEN);
+            motor_speed = atoi(motor_speed_str);
+            pwm_set_percent(0, motor_speed);
+            pwm_set_percent(1, motor_speed);
         }
     }
     oled_ascii(0, 2, "MODE:RUN MODE");
@@ -101,6 +110,7 @@ void app_main(void)
     nvs_read_string("server_ip", udp_ip, "192.168.4.1", UDP_IP_LEN);
     nvs_read_string("server_port", udp_port_str, "8889", UDP_PORT_LEN);
     udp_port = atoi(udp_port_str);
+
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
            password, udp_ip, udp_port_str, udp_port);
     // 显示相关
