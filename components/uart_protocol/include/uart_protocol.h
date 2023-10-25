@@ -25,7 +25,7 @@
  * @brief 串口初始化
  * 
  */
-void uart_init(void);
+void uart_init(uint32_t baudrate);
 
 /**
  * @brief 串口协议初始化
@@ -43,7 +43,7 @@ bool uart_protocol_init(xQueueHandle *data_uart_rx_queue, xQueueHandle *data_soc
  * @return true
  * @return false
  */
-bool uart_protocol_task_init(void);
+bool uart_protocol_task_init(uint32_t baudrate);
 
 /**
  * @brief 初始化串口数据接收任务

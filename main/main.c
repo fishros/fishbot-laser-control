@@ -31,9 +31,12 @@ static char ssid[SSID_LEN];
 static char password[PASSWORD_LEN];
 static char udp_ip[UDP_IP_LEN] = {"192.168.0.108"};
 static char udp_port_str[UDP_PORT_LEN] = {"3347"};
+static char laser_baud_str[MOTOR_SPEED_LEN] = {"115200"};
+
 static uint32_t udp_port = 3347;
 static char motor_speed_str[MOTOR_SPEED_LEN] = {"600"};
 static uint32_t motor_speed = 600;
+static uint32_t laser_baud = 115200;
 
 static protocol_package_t uart_rx_package_;
 static protocol_package_t tcp_client_rx_package_;
@@ -78,13 +81,17 @@ void app_main(void)
     key_init();
     led_init();
     print_config();
+    pwm_set_percent(0, 0);
+    pwm_set_percent(1, 0);
+    led_set_delay(1000);
+    // led_set_delay(1000);
     int8_t is_config_wifi;
     nvs_read_uint8("is_smart", &is_config_wifi);
+    // TODO: 修改配置模式速度为0,修改速度或者运行模式使用正常速度
     nvs_read_string("motor_speed", motor_speed_str, "600", MOTOR_SPEED_LEN);
     motor_speed = atoi(motor_speed_str);
     pwm_set_percent(0, motor_speed);
     pwm_set_percent(1, motor_speed);
-
     if (is_config_wifi == NVS_DATA_UINT8_NONE)
     {
         oled_ascii(0, 2, "MODE   :CONFIG MODE");
@@ -102,13 +109,13 @@ void app_main(void)
     }
     oled_ascii(0, 2, "MODE:RUN MODE");
     oled_ascii(0, 3, "WIFI:Wait connect");
-
     led_task_init();
     /*read config*/
     nvs_read_string("wifi_ssid", ssid, "fishbot", SSID_LEN);
     nvs_read_string("wifi_pswd", password, "12345678", PASSWORD_LEN);
     nvs_read_string("server_ip", udp_ip, "192.168.4.1", UDP_IP_LEN);
     nvs_read_string("server_port", udp_port_str, "8889", UDP_PORT_LEN);
+    nvs_read_string("laser_baud", laser_baud_str, "115200", UDP_PORT_LEN);
     udp_port = atoi(udp_port_str);
 
     printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
@@ -137,7 +144,8 @@ void app_main(void)
     wifi_set_as_sta(ssid, password);
 
     /*uart init*/
-    uart_protocol_task_init();
+    laser_baud = atol(laser_baud_str);
+    uart_protocol_task_init(laser_baud);
 
     /*tcp_client config*/
     tcp_client_config_init(udp_ip, udp_port);

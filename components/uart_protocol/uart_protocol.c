@@ -18,10 +18,10 @@
 
 static bool is_uart_init_ = false;
 
-void uart_init(void)
+void uart_init(uint32_t baudrate)
 {
     uart_config_t uart_config = {
-        .baud_rate = 115200,
+        .baud_rate = baudrate,
         .data_bits = UART_DATA_8_BITS,
         .parity = UART_PARITY_DISABLE,
         .stop_bits = UART_STOP_BITS_1,
@@ -71,9 +71,9 @@ int16_t uart_tx_data(protocol_package_t *protocol_package_)
     return tx_bytes_len;
 }
 
-bool uart_protocol_task_init(void)
+bool uart_protocol_task_init(uint32_t baudrate)
 {
-    uart_init();
+    uart_init(baudrate);
     is_uart_init_ = true;
     return true;
 }
