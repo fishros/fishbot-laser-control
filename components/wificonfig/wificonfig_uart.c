@@ -13,6 +13,8 @@ static char ssid[SSID_LEN];
 static char password[PASSWORD_LEN];
 static char server_ip[UDP_IP_LEN] = {"192.168.0.108"};
 static char server_port[UDP_PORT_LEN] = {"3347"};
+static char motor_speed[MOTOR_SPEED_LEN] = {"600"};
+static char laser_baud[LASER_BAUDRATE_LEN] = {"115200"};
 
 void command_restart()
 {
@@ -25,10 +27,14 @@ void print_config()
     nvs_read_string("wifi_pswd", password, "12345678", PASSWORD_LEN);
     nvs_read_string("server_ip", server_ip, "192.168.4.1", UDP_IP_LEN);
     nvs_read_string("server_port", server_port, "8889", UDP_PORT_LEN);
+    nvs_read_string("motor_speed", motor_speed, "600", MOTOR_SPEED_LEN);
+    nvs_read_string("laser_baud", laser_baud, "115200", LASER_BAUDRATE_LEN);
     printf("$%s=%s\n", "wifi_ssid", ssid);
     printf("$%s=%s\n", "wifi_pswd", password);
     printf("$%s=%s\n", "server_ip", server_ip);
     printf("$%s=%s\n", "server_port", server_port);
+    printf("$%s=%s\n", "motor_speed", motor_speed);
+    printf("$%s=%s\n", "laser_baud", laser_baud);
     printf("$board=laser_board\n");
 }
 

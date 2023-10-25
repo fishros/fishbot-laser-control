@@ -32,6 +32,8 @@
 #define BUFF_SIZE 512
 #define UDP_IP_LEN 20
 #define UDP_PORT_LEN 8
+#define MOTOR_SPEED_LEN 8
+#define LASER_BAUDRATE_LEN 8
 
 /**
  * @brief SmartConfig

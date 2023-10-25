@@ -39,5 +39,6 @@
         "mpwm.h": "c",
         "functional": "cpp",
         "errno.h": "c"
-    }
+    },
+    "ros.distro": "humble"
 }
