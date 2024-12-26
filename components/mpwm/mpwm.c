@@ -31,8 +31,8 @@ bool mpwm_init(void)
   pwm_init(PWM_PERIOD, duties, 2, pin_num);
   pwm_set_phases(phase);
   pwm_start();
-  pwm_set_percent(0,0);
-  pwm_set_percent(1,0);
+  pwm_set_percent(0,600);
+  pwm_set_percent(1,600);
   return true;
 }
 

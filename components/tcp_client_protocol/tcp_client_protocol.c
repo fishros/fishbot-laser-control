@@ -21,6 +21,7 @@ static uint32_t port_ = 3334;
 
 static const char *TAG = "tcp_client";
 
+
 int sock = -1;
 char addr_str[128];
 int addr_family = 0;
@@ -73,8 +74,8 @@ int16_t tcp_client_tx_data(protocol_package_t *protocol_package_)
     }
     tx_bytes_len = send(sock, (char *)protocol_package_->data, protocol_package_->size, 0);
 #ifdef DEBUG_FISHBOT
-    printf("send %s to server.. %d \n", frame_pack_tx_.data,
-           frame_pack_tx_.size);
+    printf("send %s to server.. %d \n", protocol_package_->data,
+           protocol_package_->size);
     printf("send len=%d \n", tx_bytes_len);
 #endif
     if (tx_bytes_len < 0)

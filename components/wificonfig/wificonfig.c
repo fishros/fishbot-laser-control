@@ -41,7 +41,7 @@ static void event_handler(void *arg, esp_event_base_t event_base,
     }
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
     {
-        esp_wifi_connect();
+        // esp_wifi_connect();
         xEventGroupClearBits(s_wifi_event_group, CONNECTED_BIT);
     }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
@@ -76,8 +76,8 @@ static void event_handler(void *arg, esp_event_base_t event_base,
         memcpy(ssid, evt->ssid, sizeof(evt->ssid));
         memcpy(password, evt->password, sizeof(evt->password));
 
-        oled_ascii(0, 3, (char *)ssid);
-        oled_ascii(0, 4, (char *)password);
+        // oled_ascii(0, 3, (char *)ssid);
+        // oled_ascii(0, 4, (char *)password);
 
         ESP_LOGI(TAG, "SSID:%s", ssid);
         ESP_LOGI(TAG, "PASSWORD:%s", password);

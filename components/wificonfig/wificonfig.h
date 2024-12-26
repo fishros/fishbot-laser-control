@@ -26,11 +26,12 @@
 #include <string.h>
 #include "oled.h"
 #include "nvs.h"
+#include "driver/uart.h"
 
-#define SSID_LEN 33
-#define PASSWORD_LEN 65
+#define SSID_LEN 32
+#define PASSWORD_LEN 32
 #define BUFF_SIZE 512
-#define UDP_IP_LEN 20
+#define UDP_IP_LEN 32
 #define UDP_PORT_LEN 8
 #define MOTOR_SPEED_LEN 8
 #define LASER_BAUDRATE_LEN 8

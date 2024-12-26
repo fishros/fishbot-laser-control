@@ -93,7 +93,15 @@ void wificonfig_byuart(void)
     int count = 0;
     while (count < 128)
     {
-        int c = fgetc(stdin);
+        int c = uart_read_bytes(UART_NUM_0, (uint8_t *)&line[count], 1, 20 / portTICK_PERIOD_MS);
+        if (c > 0)
+        {
+            c = line[count];
+        }
+        else
+        {
+            continue;
+        }
         if (c == '\n')
         {
             line[count] = '\0';

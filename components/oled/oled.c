@@ -197,8 +197,7 @@ void oled_init()
     vTaskDelay(200 / portTICK_RATE_MS);
 
     oled_clear();
-    oled_ascii(0, 0, "  -fishlaserv1.0.0- ");
-    oled_ascii(0, 1, "---------------------");
+    oled_ascii(0, 0, "    v1.3.0.alpha ");
 }
 
 void oled_ascii(uint8_t x, uint8_t y, char *str)
@@ -251,3 +250,8 @@ void oled_delete(void)
 {
     i2c_driver_delete(I2C_NUM_0);
 }
+
+
+
+
+

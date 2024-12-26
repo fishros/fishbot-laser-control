@@ -24,6 +24,17 @@
 
 #include "driver/i2c.h"
 
+typedef enum {
+    WIFI_INIT,
+    WIFI_WAITING_FOR_CONNECTION,
+    WIFI_NOT_FOUND,
+    WIFI_WRONG_PASSWORD,
+    WIFI_PING_TIMEOUT,
+    WIFI_GOT_IP,
+    WIFI_RUNNING
+} mwifi_status_t;
+
+
 //显示结构体
 typedef struct
 {    
@@ -43,5 +54,9 @@ void oled_writes(uint8_t reg_address, uint8_t *data,uint8_t data_len);
 void oled_setxy(uint8_t x, uint8_t y);
 
 void oled_ascii(uint8_t x,uint8_t y,char* str);
+
+
+
+void oled_update_with_wifi_status(mwifi_status_t status);
 
 #endif

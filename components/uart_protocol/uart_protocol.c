@@ -9,13 +9,6 @@
  */
 #include "uart_protocol.h"
 
-#define UART_LOG_NUM UART_NUM_0
-
-#define UART_PROTOC_NUM UART_NUM_0
-
-#define TX_BUF_SIZE 1024 // 串口缓存帧的大小
-#define RX_BUF_SIZE 1024 // 串口缓存帧的大小
-
 static bool is_uart_init_ = false;
 
 void uart_init(uint32_t baudrate)
@@ -28,6 +21,7 @@ void uart_init(uint32_t baudrate)
         .flow_ctrl = UART_HW_FLOWCTRL_DISABLE,
     };
     int intr_alloc_flags = 0;
+    // is_uart_init_ = true;
     ESP_ERROR_CHECK(uart_driver_install(UART_PROTOC_NUM, TX_BUF_SIZE * 2, 0, 0, NULL, intr_alloc_flags));
     ESP_ERROR_CHECK(uart_param_config(UART_PROTOC_NUM, &uart_config));
 }
@@ -47,7 +41,6 @@ int16_t uart_rx_data(protocol_package_t *protocol_package_)
                                    RX_BUF_SIZE, 6 / portTICK_PERIOD_MS);
     protocol_package_->size = rx_bytes_len;
     vTaskDelay(2 / portTICK_PERIOD_MS);
-
 
 #ifdef DEBUG_FISHBOT
     // print_frame_to_hex((uint8_t *)"rxraw",
@@ -73,7 +66,12 @@ int16_t uart_tx_data(protocol_package_t *protocol_package_)
 
 bool uart_protocol_task_init(uint32_t baudrate)
 {
-    uart_init(baudrate);
+    // uart_init(baudrate);
+    // if (!is_uart_init_) {
+    //     uart_init(baudrate);
+    // } else {
+    uart_set_baudrate(UART_PROTOC_NUM, baudrate);
+    // }
     is_uart_init_ = true;
     return true;
 }

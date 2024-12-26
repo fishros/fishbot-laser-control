@@ -81,7 +81,6 @@ static void led_task(void *param)
     vTaskDelay(led_delay_ / portTICK_RATE_MS);
     led_set(LED_BLUE, 0);
     vTaskDelay(led_delay_ / portTICK_RATE_MS);
-    // ESP_LOGI(FISHBOT_MODLUE, "led task runing..");
   }
 }
 

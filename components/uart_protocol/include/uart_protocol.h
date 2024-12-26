@@ -21,9 +21,15 @@
 
 #include "protocol.h"
 
+#define UART_LOG_NUM UART_NUM_0
+#define UART_PROTOC_NUM UART_NUM_0
+
+#define TX_BUF_SIZE 1024 // 串口缓存帧的大小
+#define RX_BUF_SIZE 1024 // 串口缓存帧的大小
+
 /**
  * @brief 串口初始化
- * 
+ *
  */
 void uart_init(uint32_t baudrate);
 
