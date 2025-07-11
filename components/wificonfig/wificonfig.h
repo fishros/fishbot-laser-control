@@ -35,6 +35,11 @@
 #define UDP_PORT_LEN 8
 #define MOTOR_SPEED_LEN 8
 #define LASER_BAUDRATE_LEN 8
+#define NET_MODE_LEN 8
+
+// 网络模式定义
+#define NET_MODE_UDP "udp"
+#define NET_MODE_TCP "tcp"
 
 /**
  * @brief SmartConfig

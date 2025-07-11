@@ -8,6 +8,7 @@
  *
  */
 #include <stdio.h>
+#include <string.h>
 
 #include "esp_spi_flash.h"
 #include "esp_system.h"
@@ -21,6 +22,7 @@
 #include "led.h"
 #include "protocol.h"
 #include "tcp_client_protocol.h"
+#include "udp_client_protocol.h"
 #include "tcp_server.h"
 #include "uart_protocol.h"
 #include "wificonfig.h"
@@ -32,12 +34,14 @@ static char password[PASSWORD_LEN];
 static char udp_ip[UDP_IP_LEN] = {"192.168.0.108"};
 static char udp_port_str[UDP_PORT_LEN] = {"3347"};
 static char laser_baud_str[MOTOR_SPEED_LEN] = {"115200"};
+static char net_mode_str[NET_MODE_LEN] = {"tcp"};
 
 static uint32_t udp_port = 3347;
 static char motor_speed_str[MOTOR_SPEED_LEN] = {"600"};
 static uint32_t motor_speed = 600;
 static uint32_t laser_baud = 115200;
 static mwifi_status_t current_status = WIFI_INIT;
+static bool is_udp_mode = false;
 
 static protocol_package_t uart_rx_package_;
 static protocol_package_t tcp_client_rx_package_;
@@ -50,7 +54,14 @@ static void data_uart_rx_data(void *parameters)
         uart_rx_len = uart_rx_data(&uart_rx_package_);
         if (uart_rx_len > 0)
         {
-            if (tcp_client_tx_data(&uart_rx_package_) < 0)
+            int16_t tx_result;
+            if (is_udp_mode) {
+                tx_result = udp_client_tx_data(&uart_rx_package_);
+            } else {
+                tx_result = tcp_client_tx_data(&uart_rx_package_);
+            }
+            
+            if (tx_result < 0)
             {
                 oled_update_with_wifi_status(WIFI_PING_TIMEOUT);
             }
@@ -70,7 +81,12 @@ static void data_tcp_rx_data(void *parameters)
     static int16_t tcp_client_rx_len;
     while (true)
     {
-        tcp_client_rx_len = tcp_client_rx_data(&tcp_client_rx_package_);
+        if (is_udp_mode) {
+            tcp_client_rx_len = udp_client_rx_data(&tcp_client_rx_package_);
+        } else {
+            tcp_client_rx_len = tcp_client_rx_data(&tcp_client_rx_package_);
+        }
+        
         if (tcp_client_rx_len > 0)
         {
             uart_tx_data(&tcp_client_rx_package_);
@@ -89,7 +105,14 @@ static void periodic_test_task(void *parameters)
         if (current_status == WIFI_PING_TIMEOUT || current_status == WIFI_GOT_IP)
         {
             uart_rx_package_.size = sprintf((char *)uart_rx_package_.data, "hello fishros~\r\n");
-            if (tcp_client_tx_data(&uart_rx_package_) < 0)
+            int16_t tx_result;
+            if (is_udp_mode) {
+                tx_result = udp_client_tx_data(&uart_rx_package_);
+            } else {
+                tx_result = tcp_client_tx_data(&uart_rx_package_);
+            }
+            
+            if (tx_result < 0)
             {
                 oled_update_with_wifi_status(WIFI_PING_TIMEOUT);
             }
@@ -127,16 +150,36 @@ void app_main(void)
     nvs_read_string("server_ip", udp_ip, "192.168.4.1", UDP_IP_LEN);
     nvs_read_string("server_port", udp_port_str, "8889", UDP_PORT_LEN);
     nvs_read_string("laser_baud", laser_baud_str, "115200", UDP_PORT_LEN);
+    nvs_read_string("net_mode", net_mode_str, "tcp", NET_MODE_LEN);
     udp_port = atoi(udp_port_str);
     oled_update_with_wifi_status(WIFI_WAITING_FOR_CONNECTION);
-    printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d", ssid,
-           password, udp_ip, udp_port_str, udp_port);
+    printf("read config ssid=%s,pswd=%s,udp_ip=%s,udp_port=%s,port=%d,net_mode=%s", ssid,
+           password, udp_ip, udp_port_str, udp_port, net_mode_str);
 
     /*wifi config*/
     wifi_init();
     wifi_set_as_sta(ssid, password);
-    tcp_client_config_init(udp_ip, udp_port);
-    tcp_client_protocol_task_init();
+    
+    // 根据网络模式选择协议
+    if (strcmp(net_mode_str, "tcp") == 0) {
+        // TCP客户端模式
+        tcp_client_config_init(udp_ip, udp_port);
+        tcp_client_protocol_task_init();
+        is_udp_mode = false;
+        printf("Using TCP client mode\n");
+    } else if (strcmp(net_mode_str, "udp") == 0) {
+        // UDP客户端模式
+        udp_client_config_init(udp_ip, udp_port);
+        udp_client_protocol_task_init();
+        is_udp_mode = true;
+        printf("Using UDP client mode\n");
+    } else {
+        // 默认TCP模式
+        tcp_client_config_init(udp_ip, udp_port);
+        tcp_client_protocol_task_init();
+        is_udp_mode = false;
+        printf("Using TCP client mode (default)\n");
+    }
 
     // 启动时接收串口数据，看数据量大小，数据量大则为运行模式，无数据则为配置模式
     // uart_rx_package_.size = uart_read_bytes(UART_NUM_0, uart_rx_package_.data, RX_BUF_SIZE, 1000 / portTICK_PERIOD_MS);
@@ -198,7 +241,7 @@ void oled_update_with_wifi_startup()
     sprintf(temp_str, "s_ip:%s", udp_ip);
     oled_ascii(0, 6, temp_str);
     // s_port
-    sprintf(temp_str, "s_port:%s", udp_port_str);
+    sprintf(temp_str, "port:%s->%s", net_mode_str, udp_port_str);
     oled_ascii(0, 7, temp_str);
 }
 

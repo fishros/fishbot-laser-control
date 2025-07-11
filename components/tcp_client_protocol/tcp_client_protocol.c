@@ -22,43 +22,43 @@ static uint32_t port_ = 3334;
 static const char *TAG = "tcp_client";
 
 
-int sock = -1;
-char addr_str[128];
-int addr_family = 0;
-int ip_protocol = 0;
-struct sockaddr_in destAddr;
+int tcp_sock = -1;
+char tcp_addr_str[128];
+int tcp_addr_family = 0;
+int tcp_ip_protocol = 0;
+struct sockaddr_in tcp_destAddr;
 
 static void connect_to_tcp_server()
 {
-    if (sock != -1)
+    if (tcp_sock != -1)
     {
         ESP_LOGE(TAG, "Shutting down socket and restarting...");
-        shutdown(sock, 0);
-        close(sock);
+        shutdown(tcp_sock, 0);
+        close(tcp_sock);
     }
     // define setting
-    destAddr.sin_addr.s_addr = inet_addr(ip_);
-    destAddr.sin_family = AF_INET;
-    destAddr.sin_port = htons(port_);
-    addr_family = AF_INET;
-    ip_protocol = IPPROTO_IP;
-    inet_ntoa_r(destAddr.sin_addr, addr_str, sizeof(addr_str) - 1);
+    tcp_destAddr.sin_addr.s_addr = inet_addr(ip_);
+    tcp_destAddr.sin_family = AF_INET;
+    tcp_destAddr.sin_port = htons(port_);
+    tcp_addr_family = AF_INET;
+    tcp_ip_protocol = IPPROTO_IP;
+    inet_ntoa_r(tcp_destAddr.sin_addr, tcp_addr_str, sizeof(tcp_addr_str) - 1);
     // create socket
-    sock = socket(addr_family, SOCK_STREAM, ip_protocol);
+    tcp_sock = socket(tcp_addr_family, SOCK_STREAM, tcp_ip_protocol);
 
-    if (sock < 0)
+    if (tcp_sock < 0)
     {
         ESP_LOGE(TAG, "Unable to create socket: errno %d", errno);
         return;
     }
     int flag = 1;
-    setsockopt(sock, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(flag));
+    setsockopt(tcp_sock, IPPROTO_TCP, TCP_NODELAY, &flag, sizeof(flag));
     ESP_LOGI(TAG, "Socket created, connecting to %s:%d", ip_, port_);
-    int err = connect(sock, (struct sockaddr *)&destAddr, sizeof(destAddr));
+    int err = connect(tcp_sock, (struct sockaddr *)&tcp_destAddr, sizeof(tcp_destAddr));
     if (err != 0)
     {
         ESP_LOGE(TAG, "Socket unable to connect: errno %d", errno);
-        close(sock);
+        close(tcp_sock);
         return;
     }
     is_tcp_client_init_ = true;
@@ -72,7 +72,7 @@ int16_t tcp_client_tx_data(protocol_package_t *protocol_package_)
         vTaskDelay(20 / portTICK_PERIOD_MS);
         return -1;
     }
-    tx_bytes_len = send(sock, (char *)protocol_package_->data, protocol_package_->size, 0);
+    tx_bytes_len = send(tcp_sock, (char *)protocol_package_->data, protocol_package_->size, 0);
 #ifdef DEBUG_FISHBOT
     printf("send %s to server.. %d \n", protocol_package_->data,
            protocol_package_->size);
@@ -95,7 +95,7 @@ int16_t tcp_client_rx_data(protocol_package_t *protocol_package_)
         return -1;
     }
     rx_bytes_len =
-        recv(sock, protocol_package_->data, RX_BUF_SIZE - 1, 0);
+        recv(tcp_sock, protocol_package_->data, RX_BUF_SIZE - 1, 0);
     if (rx_bytes_len > 0)
     {
         protocol_package_->size = rx_bytes_len;
