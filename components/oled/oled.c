@@ -197,7 +197,7 @@ void oled_init()
     vTaskDelay(200 / portTICK_RATE_MS);
 
     oled_clear();
-    oled_ascii(0, 0, "    v1.3.0.alpha ");
+    oled_ascii(0, 0, "    v1.4.0.alpha ");
 }
 
 void oled_ascii(uint8_t x, uint8_t y, char *str)
